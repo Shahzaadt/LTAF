@@ -1,0 +1,14 @@
+LTAF Project
+ASP.NET Open Source Gallery at Outercurve Foundation
+Copyright 2012 Outercurve Foundation
+
+This product includes software developed at
+The Outercurve Foundation (http://www.outercurve.org/).
+
+LTAF includes works distributed under the licenses listed below. The full text for most of the licenses listed below can be found in the LICENSE.txt file accompanying each work. The original copyright notices have been preserved within the respective files and or packages. Please refer to the specific files and/or packages for more detailed information about the authors, copyright notices, and licenses.
+
+Moq 3.1.4
+----- 
+Website:      http://code.google.com/p/moq/
+Copyright:    Copyright (c) 2010 Clarius Consulting, Manas Technology Solutions, InSTEDD
+License:      BSD

@@ -1,0 +1,1545 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:web="http://www.hotmail.com/web" 
+    xmlns:fa="http://www.hotmail.com/fa"
+    xmlns:fireant="http://www.hotmail.com/fireant">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Windows Live Mail</title>
+    
+
+	
+	<link rel="stylesheet" id="ssThemeService"/>
+	
+	<style type="text/css">
+	BODY
+    {
+	    font-size:0.69em;
+	    font-family:Tahoma;
+    }
+    
+    .cContentInner {position:relative;height:100%;padding:0 5px 0 5px;}
+    .Inbox.ReadDefault .cContentInner {overflow-y:hidden;overflow-x:hidden;}
+    .Inbox.ReadingPaneOn.PaneBottom .cContentInner {overflow-y:hidden;}
+    .EditMessage .cContentInner {padding-right:1px;}
+    .TodayDefault .cContentInner {margin-right:320px;}
+    .SendMailConfirm .cContentInner {margin-right:0px;}
+	</style>
+	<link rel="stylesheet" href="http://gfx8.mail.live.com/mail/11.09.0000.0123/positioning.css" />
+	
+    <style type="text/css" id="Inbox_ToolsColumn_ResizeStyle">
+        .cToolsColumn  {width:11.64em;}
+        .cContentColumn {left:11.64em}
+    </style>
+
+	<style type="text/css" id="Inbox_ReadingPaneRight_ResizeStyle">
+		.Inbox.ReadingPaneOn.PaneRight .MessageListWidth, .Inbox.ReadingPaneOn.PaneRight .Web_UI_DragDrop .MessageItemUnread, .Inbox.ReadingPaneOn.PaneRight .Web_UI_DragDrop .MessageItemRead {width:19.47em;}
+		.Inbox.ReadingPaneOn.PaneRight .cReadMessageContainer {left:19.9em;}			
+	</style>
+    
+	<style type="text/css" id="Inbox_ReadingPaneBottom_ResizeStyle">
+		.Inbox.ReadingPaneOn.PaneBottom .cMessageList, .Inbox.ReadingPaneOn.PaneBottom .Web_UI_DragDrop .MessageItemUnread, .Inbox.ReadingPaneOn.PaneBottom .Web_UI_DragDrop .MessageItemRead {height:10em;}
+		.Inbox.ReadingPaneOn.PaneBottom .cReadMessageContainer {height:25em;}
+	</style>
+    
+    <style type="text/css" id="Contacts_ContactsDefault_ResizeStyle">
+        .Contacts.ContactsDefault .ContactListWidth, .Contacts.ContactsDefault .Web_UI_DragDrop .ContactListItem {width:19.47em;}
+        .Contacts.ContactsDefault .cMainContactContainer {left:19.9em;}
+	</style>
+	</head>
+	<body onscroll="this.scrollTop='0px';" >
+        <hr id="fontMesurementStandard" style="height:1em;width:0;position:absolute;top:0px;left:1px;z-index:-1;" />
+		
+<fa:layout id="Inbox" help="PIM_ReadMessage">
+	
+	<fa:layout id="ReadingPaneOn" ps="85773" help="PIM_ReadMessage">
+	    <fa:layout id="PaneRight" onshow="g_sInboxLayoutId='PaneRight';g_layout.UpdateLayoutCookie()" ps="85773" help="PIM_ReadMessage">
+		    <fa:layout id="PaneRightMultiselect" ps="85776" help="PIM_ReadMessage">
+		    </fa:layout>
+	    </fa:layout>
+	    <fa:layout id="PaneBottom" onshow="g_sInboxLayoutId='PaneBottom';disableReadingPaneVerticalResize(false);g_layout.UpdateLayoutCookie()" ps="85773" help="PIM_ReadMessage">
+		    <fa:layout id="PaneBottomMultiselect" ps="85776" help="PIM_ReadMessage">
+		    </fa:layout>
+	    </fa:layout>
+	</fa:layout>
+	<fa:layout id="ReadingPaneOff" onshow="g_sInboxLayoutId='ReadingPaneOff';g_layout.UpdateLayoutCookie()" ps="85774" help="PIM_ReadMessage">
+	</fa:layout>
+	
+	<fa:layout id="ReadDefault" onshow="disableReadingPaneVerticalResize(true)" ps="85769" help="PIM_ReadMessage">
+	</fa:layout>
+</fa:layout>
+
+
+<fa:layout id="TodayDefault" onshow="g_layout.UpdateLayoutCookie()" ps="86167" help="PIM_WhatsNew">
+</fa:layout>
+
+
+<fa:layout id="Contacts" help="PIM_Contacts">
+	
+		<fa:layout id="ContactsDefault" onshow="g_layout.UpdateLayoutCookie()" ps="85789" help="PIM_Contacts">
+			<fa:layout id="ContactsDefaultMultiSelect">
+				<fa:layout id="ContactsDefaultMultiSelectGroups">
+				</fa:layout>
+			</fa:layout>
+			<fa:layout id="Groups" ps="85793" help="PIM_Groups">
+			</fa:layout>
+		</fa:layout>
+	
+	<fa:layout id="ContactReadDefault" onshow="g_layout.UpdateLayoutCookie()" ps="85790" help="PIM_Contacts">
+	</fa:layout>
+
+	
+	<fa:layout id="ContactEdit"  ps="85791" help="PIM_Contacts">
+		<fa:layout id="ContactNew" onshow="g_layout.UpdateLayoutCookie()" ps="85792" help="PIM_Contacts">
+		</fa:layout>
+	</fa:layout>
+</fa:layout>
+
+
+<fa:layout id="EditMessage" ps="85763" help="PIM_WriteMessage">
+	<fa:layout id="SendPhoto" ps="85766" help="PIM_Attach">
+		<fa:layout id="SendPhotoWithInstall" ps="85766" help="PIM_Attach">
+		</fa:layout>
+	</fa:layout>
+	<fa:layout id="WaitForUpload" ps="85767" help="PIM_Postmaster">
+	</fa:layout>
+</fa:layout>
+
+
+<fa:layout id="SendMailConfirm" onshow="g_ads.RefreshOneAd('RadAd_SMC600');g_ads.RefreshOneAd('CustComm_300x125_SMCPage')" ps="85768" help="PIM_Postmaster">
+</fa:layout>
+		<div id="cLoadingIndicator" class="DisplayNone" >
+			<img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/animated_loading.gif" />
+			<span >Working on your request...</span>
+		</div>
+		<div class="DisplayNone" id="cDragAndDropIndicator">
+		    <img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_multi_envelope.gif" />
+		    <span class="cDragCount"></span>
+		</div>
+        <div id="HeaderContainer">
+		    
+		    		    
+		    
+    <div id="header">
+        <div class="stroke"></div>
+        <div class="inside">
+            <div class="BrandSection">
+
+                <div id="DefaultBrand">
+                    <a id="Jewel" class="jewel" href="#" onclick="return false;">
+                        <span class="MoreServices">More services</span>
+                        <img id="JewelImage" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/jewel.png"  alt="More services" />
+                    </a>
+                    <span class="Product" >
+                        Windows Live<span class="tm">&trade;</span> Mail    
+                    </span>
+                    <span class="Beta">Beta</span>
+                </div>
+
+                <div id="mainmenu" class="Menu"></div>
+            </div>
+
+        <div class="MeSection">
+            <div class="sme">
+                <span id="FirstLastName" class="BoldText" >Federico Silva Armas</span><br />
+                <span >dummy@hotmail.com</span><br />
+                <a href="http://by124w.bay124.mail.live.com/mail/logout.aspx" target="_top" >Sign out</a>
+            </div>
+        </div>
+
+        <div class="SearchSection">
+            <ul>
+                <li>
+                    <div class="SearchBorder"><input
+                            class="m SearchEmail" 
+                            id="SearchEmailBox"
+                            maxlength="256"
+                            value="" 
+                            onkeydown="if(event.keyCode==13){document.getElementById('SearchEmail').click();} if(!event.ctrlKey) event.cancelBubble=true;"
+                            
+                      /><input 
+                            class="m SearchContacts" 
+                            id="SearchContactsBox"
+                            maxlength="256"
+                            FireAnt:autocompletelistid="cSearchContactsList" 
+                            FireAnt:ps="90801" 
+                            FireAnt:onkeydown_selectionkeycodes="9,13" 
+                            FireAnt:downarrowdisplayslist="true" 
+                            FireAnt:matchingitemdelimeters=", ;" 
+                            value="" 
+                            
+                      /></div>
+                </li>
+                <li>
+                    <a href="#" id="SearchEmail" title="Search mail" class="Command SearchEmail" fireant:commandname="SearchEmail" onkeydown="if(event.keyCode==13){this.click();event.cancelBubble=true;}else if(event.keyCode==46){event.cancelBubble = true;}" >
+                        <div class="sc"  style="">
+                            <div class="SearchButtonBorder">
+                                <div class="Search SearchButton">
+                                    <span >
+                                        Mail
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="SearchContacts" class="Command SearchContacts" title="Search contacts" fireant:commandname="SearchContacts" onkeydown="if(event.keyCode==13){this.click();event.cancelBubble=true;}else if(event.keyCode==46){event.cancelBubble = true;}" >
+                        <div class="sc">
+                            <div class="SearchButtonBorder">
+                                <div class="Search SearchButton">
+                                    <span >Contacts</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>    
+                </li>
+                <li>   
+                    <a href="#" title="Search the web" onclick="searchLive('http://www.live.com/?mkt=en-US');">
+                        <div class="sc">
+                            <div class="SearchButtonBorder">
+                                <div class="Search SearchButton">
+                                    <span>Web</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+                        <div class="not"></div>
+            </div>
+        <div style="clear:both;"></div>
+        <div id="pagebg"></div>
+    </div>
+    <div id="LiveMenu" FireAnt:jewelid="Jewel" FireAnt:jewelimg="JewelImage">
+  	    <ul class="main">
+		    <li>
+	 		    <a href="#" onclick="top.location='http://www.live.com/?mkt=en-US'" class="icon HoverItem">
+				    <strong>Live.com</strong>
+	  		    </a>
+		    </li>
+		    <li class="sep"/>
+		    <li><a href="http://favorites.live.com/?mkt=en-US" class="icon HoverItem" target="_top"><img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/Favorites.gif"/>Favorites</a></li>
+            <li><a href="http://gallery.live.com/?mkt=en-us" class="icon HoverItem" target="_top"><img alt="" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/Gallery.gif"/>Gallery</a></li>
+            <li><a href="http://local.live.com" class="icon HoverItem" target="_top"><img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/Local.gif"/>Local</a></li>
+            <li><a href="http://safety.live.com/?mkt=en-US" class="icon HoverItem" target="_top"><img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/OneCare.gif"/>OneCare</a></li>
+            <li><a href="http://expo.live.com" class="icon HoverItem" target="_top"><img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/Expo.gif"/>Expo</a></li>
+            <li><a href="http://shopping.live.com" class="icon HoverItem" target="_top"><img alt="" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/Shopping.gif"/>Shopping</a></li>
+            <li><a href="http://spaces.live.com/?mkt=en-US" class="icon HoverItem" target="_top"><img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/Spaces.gif"/>Spaces</a></li>
+
+		    
+            
+            
+            
+            
+            
+ 	    </ul>
+  	    <ul class="tools">
+		    <li>
+		        <a href="https://account.live.com/?mkt=en-us" target="_top">
+			        Account
+		        </a>
+		    </li>
+		    <li>
+			    <a href="http://feedback.live.com/default.aspx?locale=en-us" target="_top">
+				    Feedback
+			    </a>
+		    </li>
+  	    </ul>
+    </div>
+
+            <div class="ToolBarContainer">
+    <ul class="ListStyleNone ToolBarList">
+        
+    <li class="FloatRight MailOptions">
+        <a href="#" 
+            onclick="DoHelp('PIM_WhatsNew');" 
+        	
+            class="Command"
+            FireAnt:commandname="DoHelp"
+            Fireant:hoverclass="ToolBarListHover"
+        >
+            <img class="" alt="Help"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_help.gif" /></a>
+    </li>
+    	
+	    <li class="FloatRight MailOptions">
+	        <a id="CustomizeLink" class="Command Menu MenuToggleButton" 
+	            href="#" 
+	            title="Options"
+	            
+	            FireAnt:positionelemid="CustomizeLink"
+	            FireAnt:commandname="CustomizeMenu"
+	            Fireant:hoverclass="ToolBarListHover"
+	            FireAnt:menuname="CustomizeMenu"
+	            Fireant:spltopenalt="Open"
+                Fireant:spltclosealt="Close"
+	            FireAnt:menugroups="{groupkey:'ReadingPane',ismultiselect:false},{groupkey:'FileAsOptions',ismultiselect:false},{groupkey:'UserThemes',ismultiselect:false}"
+		        FireAnt:menucommands=
+		        "
+	            
+		        {groupkey:'ReadingPane',key:'ReadingPaneTitle',label:'Reading pane settings',css_class:'ReadingPaneConfigurationMenuItem BoldText'},
+		        {groupkey:'ReadingPane',key:'PaneRight',cmd:'OrientReadingPane',icon:'i_readingpane_right.gif',label:'Right',selected:true,css_class:'ReadingPaneConfigurationMenuItem'},
+                {groupkey:'ReadingPane',key:'PaneBottom',cmd:'OrientReadingPane',icon:'i_readingpane_bottom.gif',label:'Bottom',css_class:'ReadingPaneConfigurationMenuItem'},
+                {groupkey:'ReadingPane',key:'ReadingPaneOff',cmd:'OrientReadingPane',icon:'i_readingpane_off.gif',label:'Off',css_class:'ReadingPaneConfigurationMenuItem'},
+	            
+                {key:'FileAsTitle',label:'Sort contacts',css_class:'FileAsMenuItem BoldText',separator:true},
+		        {groupkey:'FileAsOptions',key:'3FileAsMenuItem',cmd:'FileAsOptionSelect',css_class:'FileAsMenuItem',label:'Last%2c First'},{groupkey:'FileAsOptions',key:'1FileAsMenuItem',cmd:'FileAsOptionSelect',css_class:'FileAsMenuItem',label:'First Last'},{groupkey:'FileAsOptions',key:'5FileAsMenuItem',cmd:'FileAsOptionSelect',css_class:'FileAsMenuItem',label:'Last%2c First (Company)'},{groupkey:'FileAsOptions',key:'7FileAsMenuItem',cmd:'FileAsOptionSelect',css_class:'FileAsMenuItem',label:'Company (Last%2c First)'},
+		        {cmd:'ImportExportContacts',key:'options.aspx?subsection=25&n=600209478&boot=s',label:'Import contacts',css_class:'ImportExportMenuItem',separator:true},
+		        {cmd:'ImportExportContacts',key:'options.aspx?subsection=26&n=250399622',label:'Export contacts',css_class:'ImportExportMenuItem'},
+		        		        
+	            {key:'UserThemeTitle',label:'Themes',separator:true,css_class:'BoldText'}
+	            ,{groupkey:'UserThemes',key:'0',cmd:'UserThemeSelect',icon:'../theme0/thumbn.gif',label:'Blue Vapor',selected:false },{groupkey:'UserThemes',key:'1',cmd:'UserThemeSelect',icon:'../theme1/thumbn.gif',label:'Blue',selected:true },{groupkey:'UserThemes',key:'2',cmd:'UserThemeSelect',icon:'../theme2/thumbn.gif',label:'Red',selected:false },{groupkey:'UserThemes',key:'3',cmd:'UserThemeSelect',icon:'../theme3/thumbn.gif',label:'Black',selected:false },{groupkey:'UserThemes',key:'4',cmd:'UserThemeSelect',icon:'../theme4/thumbn.gif',label:'Silver',selected:false },{groupkey:'UserThemes',key:'5',cmd:'UserThemeSelect',icon:'../theme5/thumbn.gif',label:'Pink',selected:false },{groupkey:'UserThemes',key:'6',cmd:'UserThemeSelect',icon:'../theme6/thumbn.gif',label:'Green',selected:false },{groupkey:'UserThemes',key:'7',cmd:'UserThemeSelect',icon:'../theme7/thumbn.gif',label:'Purple',selected:false },{groupkey:'UserThemes',key:'8',cmd:'UserThemeSelect',icon:'../theme8/thumbn.gif',label:'Orange',selected:false },
+	            {cmd: 'TurnOffTips', label:'Turn-off Tips',separator:true, css_class:'DisplayNone', id:'TurnOffTips'},
+	            {cmd: 'ReActivateTips', label:'Re-activate Tips', css_class:'DisplayNone', id: 'ReactivateTips'},
+	            {label:'%c2%a9 2006 Microsoft',css_class:'DisabledText',separator:true},
+	            {cmd:'LegalLink',label:'Legal'},
+  		        {cmd:'MailOptionsLink',label:'More options...',separator:true,css_class:'BoldText'}
+		        ">
+		        <img alt="Options"
+                class="MenuToggleButton" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_options.gif" />
+                Options
+                <img alt="Open"
+                class="MenuToggleButton MenuSpltIcon" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+                </a>
+	    </li>
+    
+        <li class="ShortCutListItem"><a href="#" id="TodayTab" class="Command" Fireant:commandname="TodayTab" Fireant:hoverclass="ToolBarListHover" onclick="cancelEvent(event)"
+            title="Go to the Today Page"
+            >
+            <img alt="Go to the Today Page" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_today.gif" />
+        </a></li>
+        <li class="ShortCutListItem"><a href="#" id="MailTab" class="Command" Fireant:commandname="MailTab" Fireant:hoverclass="ToolBarListHover" onclick="cancelEvent(event)"
+            title="Go to Mail"
+            >
+            <img alt="Go to Mail" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_mail.gif" />
+        </a></li>
+        <li class="ShortCutListItem"><a href="#" id="ContactsTab" class="Command" Fireant:commandname="ContactsTab" Fireant:hoverclass="ToolBarListHover" onclick="cancelEvent(event)"
+            title="Go to Contacts"
+            >
+            <img alt="Go to Contacts" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_contacts.gif" />
+        </a></li>
+        
+        <li class="ShortCutListItem"><a href="#" id="CalendarTab" class="Command" Fireant:commandname="CalendarTab" Fireant:hoverclass="ToolBarListHover" onclick="cancelEvent(event)"
+            title="Go to Calendar"
+            >
+            <img alt="Go to Calendar" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_calendar.gif" />
+        </a></li>
+        
+        
+        <li class="ShortCutListItem ToolbarSeparator"></li>
+        
+        <li class="NewToolBarCmd DisplayNone"><a href="#" id="NewToolBarCmd" class="Command"
+            Fireant:commandname="NewMessage" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:type="spltDef" 
+            Fireant:spltexpid="NewToolBarCmdExp"
+            >
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_newmessage.gif" />
+            <span>New</span>
+        </a></li>
+        
+        <li class="NewToolBarCmd DisplayNone">
+            <a href="#" id="NewToolBarCmdExp" class="Command Menu MenuToggleButton"
+             
+            
+            Fireant:commandname="ShowNewItemMenu" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:type="spltExp" 
+            Fireant:spltdefid="NewToolBarCmd"
+            Fireant:menuname="NewItemToday" 
+            Fireant:spltopenalt="Open"
+            Fireant:spltclosealt="Close"
+            Fireant:menucommands="{key:'mail',cmd:'NewMessage',icon:'i_newmessage.gif',label:'Message...'},
+		        {key:'mail',cmd:'NewFolder',icon:'i_newfolder.gif',label:'Folder...'},
+		        {key:'mail',cmd:'NewContact',icon:'i_newcontact.gif',label:'Contact...'},
+		        {key:'new',cmd:'NewGroup',icon:'i_new_group.gif',label:'Group...'}">
+            <img class="MenuToggleButton MenuSpltIcon" alt="Open"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+        </a>
+        </li>
+        <li class="DisplayNone NewContactIcon">
+        <a href="#" id="NewContactToolBarCmd" class="Command"
+            Fireant:commandname="NewContact" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:type="spltDef" 
+            Fireant:spltexpid="NewContactToolBarCmdExp"
+            >
+            <img alt="" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_newcontact.gif" />
+            <span>New</span>
+        </a></li>
+        <li class="DisplayNone NewContactIcon">
+        <a href="#" id="NewContactToolBarCmdExp" class="Command Menu MenuToggleButton"
+             
+            
+            Fireant:commandname="ShowNewItemMenu" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:type="spltExp" 
+            Fireant:spltdefid="NewContactToolBarCmd"
+            Fireant:spltopenalt="Open"
+            Fireant:spltclosealt="Close">
+            <img class="MenuToggleButton MenuSpltIcon" alt="Open"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+        </a></li>
+        <!-- Inbox Toolbar section -->
+        <li class="cInboxToolBarReadingPaneOn DisplayNone"><a href="#" id="InboxReplyCmd" class="Command"
+            Fireant:commandname="Reply" Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_reply.gif" /><span>Reply</span></a></li>
+        <li class="cInboxToolBarReadingPaneOn DisplayNone"><a href="#" id="InboxReplyAllCmd" class="Command"
+            Fireant:commandname="ReplyAll" 
+            Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_replyall.gif" /><span>Reply all</span></a></li>
+        <li class="cInboxToolBarReadingPaneOn DisplayNone"><a href="#" id="InboxForwardCmd" class="Command"
+            Fireant:commandname="Forward" 
+            Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_forward.gif" /><span>Forward</span></a></li>
+        <li class="cInboxToolBar DisplayNone"><a href="#" id="InboxDeleteMessageCmd" class="Command"
+            Fireant:commandname="DeleteMessage" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:keycode="46"
+            Fireant:layout="Inbox" 
+            title="Delete">
+            <img alt="" title="Delete"
+                src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_delete.gif" /><span>Delete</span></a></li>
+         <li class="cInboxToolBarReadingPaneOff DisplayNone"><a href="#" id="InboxReportAndDeleteCmd" class="Command"
+            Fireant:commandname="MarkMultipleAsJunk" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:layout="Inbox" 
+            title="Report & delete">
+            <img alt="" title="Report & delete"
+                src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_junkEmail.gif" /><span>Report & delete</span></a></li>
+        <li class="cInboxToolBarReadingPaneOn DisplayNone"><a href="#" id="InboxPrintMessageCmd" class="Command"
+            Fireant:commandname="PrintMessage" 
+            Fireant:hoverclass="ToolBarListHover" 
+            
+            title="Print">
+            <img alt="Print" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_print.gif"/></a></li>
+        <li class="cInboxToolBarReadingPaneOn DisplayNone"><a href="#" id="InboxPreviousMessageCmd" class="Command NextPreviousMessage"
+            Fireant:commandname="PreviousMessage" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:keycode="38"
+            Fireant:layout="Inbox" 
+            title="Previous message">
+            <img alt="Previous message"
+                src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_previous.gif" title="Previous message" />
+        </a></li>
+        <li class="cInboxToolBarReadingPaneOn DisplayNone"><a href="#" id="InboxNextMessageCmd" class="Command NextPreviousMessage"
+            Fireant:commandname="NextMessage" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:keycode="40"
+            Fireant:layout="Inbox" 
+            title="Next message">
+            <img alt="Next message"
+                src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_next.gif" title="Next message" />
+        </a></li>
+        <li id="InboxCloseReadMessageCmd" class="Command" Fireant:commandname="CloseReadMessage"
+            Fireant:keycode="27" Fireant:ctrl="true" Fireant:layout="ReadDefault" style="display: none" >
+        </li>
+        <li id="InboxPreviousFolderCmd" class="Command" Fireant:commandname="PreviousFolder"
+            Fireant:keycode="219" Fireant:ctrl="true" Fireant:layout="Inbox" style="display: none">
+        </li>
+        <li id="InboxNextFolderCmd" class="Command" Fireant:commandname="NextFolder" Fireant:keycode="221" Fireant:ctrl="true"
+            Fireant:layout="Inbox" style="display: none"></li>
+        <li class="cInboxToolBar DisplayNone"><a href="#" 
+            id="InboxMoveMessagesCmdExp" 
+            class="Command Menu MenuToggleButton"
+            Fireant:commandname="ShowMoveMessagesMenu" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:menuname="MoveMessagesMenu"
+            FireAnt:positionelemid="InboxMoveMessagesCmdExp"
+            Fireant:spltopenalt="Open"
+            Fireant:spltclosealt="Close"
+            >
+            <img class="MenuToggleButton" alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_movetofolder.gif" />
+            <span class="MenuToggleButton">Move to:</span>
+            <img class="MenuToggleButton MenuSpltIcon" alt="Open"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+        </a></li>
+        <li class="cInboxToolBarReadingPaneOff DisplayNone"><a href="#" id="A1" class="Command"
+            Fireant:commandname="MarkAsUnread" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:layout="Inbox" 
+            title="Mark as unread">
+            <img alt="" title="Mark as unread"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_new.gif" /><span>Mark as unread</span></a></li>
+        <li class="cInboxToolBar DisplayNone"><a href="#" id="InboxCheckMailCmd" class="Command"
+            Fireant:commandname="CheckMail" 
+            Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_checkmail.gif" title="Check mail" /></a></li>
+        
+        <!-- Contacts view section -->
+        <li id="ContactsPreviousContactCmd" class="Command" Fireant:commandname="PreviousContact"
+            Fireant:keycode="38" Fireant:layout="ContactsDefault" style="display: none"
+            ></li>
+        <li id="ContactsNextContactCmd" class="Command" Fireant:commandname="NextContact"
+            Fireant:keycode="40" Fireant:layout="ContactsDefault" style="display: none"
+            ></li>
+        <li id="ContactsPreviousGroupCmd" class="Command" Fireant:commandname="PreviousGroup"
+            Fireant:keycode="219" Fireant:ctrl="true" Fireant:layout="ContactsDefault" style="display: none">
+        </li>
+        <li id="ContactsNextGroupCmd" class="Command" Fireant:commandname="NextGroup" Fireant:keycode="221"
+            Fireant:ctrl="true" Fireant:layout="ContactsDefault" style="display: none"></li>
+        <li id="ContactsReadContactCmd" class="Command" Fireant:commandname="ReadContact"
+            Fireant:keycode="13" Fireant:layout="ContactsDefault" style="display: none"></li>
+        <li id="ContactsCancelReadContactCmd" class="Command" Fireant:commandname="CancelReadContact"
+            Fireant:keycode="27" Fireant:layout="ContactReadDefault" style="display: none"></li>
+        <li class="cContactsToolBar DisplayNone"><a href="#" id="ContactsEditContactCmd"
+            class="Command" Fireant:commandname="EditContact"
+            Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_edit.gif" /><span>Edit</span></a></li>
+        <li class="ContactTool DisplayNone"><a href="#" id="ContactsEmailContactsCmd"
+            class="Command" Fireant:commandname="EmailContacts"
+            Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_send.gif" /><span>E-mail contact</span></a></li>
+        <li class="GroupTool DisplayNone"><a href="#" id="ContactsEmailGroupCmd" class="Command"
+            Fireant:commandname="EmailGroup" 
+            Fireant:hoverclass="ToolBarListHover" 
+            Fireant:type="toolbar"
+            >
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_send.gif" /><span>E-mail group</span></a></li>
+        <li class="cContactsToolBar DisplayNone"><a href="#" id="ContactsDeleteContactCmd"
+            class="Command" Fireant:commandname="DeleteContact"
+            Fireant:hoverclass="ToolBarListHover"
+            Fireant:keycode="46" Fireant:layout="ContactsDefault" 
+            title="Delete">
+            <img alt="" title="Delete"
+                src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_delete.gif" /><span>Delete</span></a></li>
+        <li class="GroupTool DisplayNone"><a href="#" id="ContactsRemoveMemberFromGroupCmd"
+            class="Command" Fireant:commandname="RemoveMemberFromGroup"
+            Fireant:hoverclass="ToolBarListHover" 
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_cancel.gif" /><span>Remove from group</span></a></li>        
+        <li class="cContactsToolBar DisplayNone"><a href="#" id="ContactsPrintContactCmd"
+            class="Command" Fireant:commandname="PrintContacts"
+            Fireant:hoverclass="ToolBarListHover"
+            
+            title="Print">
+            <img alt="Print" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_print.gif" /></a></li>
+        <li class="cContactsToolBar DisplayNone"><a href="#" id="ContactsAddToGroupCmdExp"
+            class="Command Menu MenuToggleButton" Fireant:commandname="ShowAddToGroupMenu"
+            Fireant:hoverclass="ToolBarListHover"
+            Fireant:menuname="AddToGroupMenu" Fireant:spltopenalt="Open"
+            Fireant:spltclosealt="Close"
+             >
+            <img class="MenuToggleButton" alt="Add to group:"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_contact_group.gif" />
+            <span>Add to group:</span>
+            <img class="MenuToggleButton MenuSpltIcon" alt="Open"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+        </a></li>
+        <!-- Contacts edit section -->
+        <li class="cContactsEditToolBar DisplayNone"><a href="#" id="ContactsEditSaveContactCmd"
+            class="Command" Fireant:commandname="SaveContact"
+            Fireant:hoverclass="ToolBarListHover"
+            >
+            <img alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_edit.gif" /><span>Save</span></a></li>
+        <li class="cContactsEditToolBar DisplayNone"><a href="#" id="ContactsEditCancelEditContactCmd"
+            class="Command" Fireant:commandname="CancelEditContact"
+            Fireant:hoverclass="ToolBarListHover"
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_cancel.gif" /><span>Cancel</span></a></li>
+        <!-- edit message -->
+        <li class="cEditMessageToolBar DisplayNone"><a href="#" id="EditMessageSendMessageCmd"
+            class="Command" Fireant:commandname="SendMessage"
+            Fireant:hoverclass="ToolBarListHover"
+            >
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_send.gif" /><span>Send</span></a></li>
+        <li class="cEditMessageToolBar DisplayNone"><a href="#" id="EditMessageSaveDraftCmd"
+            class="Command" Fireant:commandname="SaveDraft"
+            Fireant:hoverclass="ToolBarListHover"
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_drafts.gif" /><span>Save draft</span></a></li>
+        <li class="cEditMessageToolBar DisplayNone"><a href="#" id="EditMessageAddAttachmentCmdExp"
+            class="Command Menu MenuToggleButton" 
+            
+            Fireant:commandname="ShowAddAttachmentMenu" Fireant:menuname="AddAttachmentMenu"
+            Fireant:hoverclass="ToolBarListHover"
+            Fireant:spltopenalt="Open"
+            Fireant:spltclosealt="Close"
+            Fireant:menucommands="{key:'File',cmd:'AddAttachment',icon:'',label:'File'}
+		    
+			    ,{key:'Photo',cmd:'AddAttachment',icon:'',label:'Photo'}
+		    ">
+		    <img class="MenuToggleButton" alt="Open"
+                src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_attachment_action.gif" />
+            <span>Attach:</span>
+            <img class="MenuToggleButton MenuSpltIcon" alt="Open"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+        </a></li>
+        
+        <li class="cEditMessageToolBar DisplayNone"><a href="#" id="EditMessageSpellingOptionsMenuCmdExp"
+            class="Command Menu MenuToggleButton" Fireant:commandname="ShowSpellingOptionsMenu"
+            Fireant:hoverclass="ToolBarListHover"
+            Fireant:menuname="SpellingOptionsMenu" Fireant:spltopenalt="Open"
+            Fireant:spltclosealt="Close"
+            Fireant:type="spltExp" Fireant:menucommands="{key:'on',cmd:'ToggleSpellchecking',icon:'',label:'Spell check on'},
+                {key:'off',cmd:'ToggleSpellchecking',icon:'',label:'Spell check off'}"
+            title='Turn spell checking on or off'
+            
+            >
+            <img class="MenuToggleButton" alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_spelling.gif" />
+            <span class="MenuToggleButton" id="SpellingOptionsDisplayText">
+                Spell check on
+            </span>
+            <img class="MenuToggleButton MenuSpltIcon" alt="Open"
+                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+        </a></li>
+        
+        <!-- Message: High Priority -->
+        <li class="cEditMessageToolBar DisplayNone" ><a href="#" id="StickyClickHigh" 
+            class="Command" 
+            Fireant:hoverclass="ToolBarListHover" 
+             onclick="SetMessagePriority('StickyClickHigh', 'StickyClickLow', 2, null);">
+            <img src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_importance_high_large.gif" title="High importance" /></a></li>
+        <!-- Message: Low Priority -->
+        <li class="cEditMessageToolBar DisplayNone"><a href="#" id="StickyClickLow"
+            class="Command" 
+            Fireant:hoverclass="ToolBarListHover" 
+             onclick="SetMessagePriority('StickyClickLow', 'StickyClickHigh', 1, null);">
+            <img title="Low importance" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_importance_low_large.gif"/></a></li>        
+        <li class="cEditMessageToolBar DisplayNone"><a href="#" id="EditMessageCancelComposeCmd"
+            class="Command" Fireant:commandname="CancelCompose"
+            Fireant:hoverclass="ToolBarListHover"
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_cancel.gif" /><span>Cancel</span></a></li>
+        <!-- send photo -->
+        <li class="cSendPhotoToolBar DisplayNone"><a href="#" id="SendPhotoNewMessageCmd"
+            class="Command" Fireant:commandname="NewMessage" Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_newmessage.gif" /><span>New</span></a></li>
+        <li class="cSendPhotoToolBar DisplayNone"><a href="#" id="SendPhotoCheckMailCmd"
+            class="Command" Fireant:commandname="CheckMail" Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_checkmail.gif" title="Check mail" /></a></li>
+        <li class="cSendPhotoToolBar DisplayNone"><a href="#" id="SendPhotoCancelSendPhotoCmd"
+            class="Command" Fireant:commandname="CancelSendPhoto" Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_cancel.gif" /><span>Cancel</span></a></li>
+        <li class="cSendPhotoToolBar DisplayNone"><a href="#" id="SendPhotoInstallPhotoControlCmd"
+            class="Command PhotoControlInstall DisplayNone" Fireant:commandname="InstallPhotoControl" Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_drafts.gif" /><span>Install</span></a></li>
+        <!-- Upload -->
+        <li class="cWaitForUploadToolBar DisplayNone"><a href="#" id="WaitForUploadNewMessageCmd"
+            class="Command" Fireant:commandname="NewMessage"
+            Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_newmessage.gif" /><span>New</span></a></li>
+        <li class="cWaitForUploadToolBar DisplayNone"><a href="#" id="WaitForUploadCheckMailCmd"
+            class="Command" Fireant:commandname="CheckMail"
+            Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_checkmail.gif" title="Check mail" /></a></li>
+        <li class="cWaitForUploadToolBar DisplayNone"><a href="#" id="WaitForUploadCancelSendMessageCmd"
+            class="Command" Fireant:commandname="CancelSendMessage"
+            Fireant:hoverclass="ToolBarListHover">
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_cancel.gif" /><span>Cancel</span></a></li>
+        <!-- Today page -->
+        <li class="cTodayToolBar DisplayNone"><a href="#" id="TodayCheckMailCmd" class="Command"
+            Fireant:commandname="CheckMail" 
+            Fireant:hoverclass="ToolBarListHover"
+            >
+            <img alt="" src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_checkmail.gif" title="Check mail" /></a></li>
+        <li class="cTodayToolBar DisplayNone"><a href="#" id="TodayPreviousFolderCmd" class="Command"
+            Fireant:commandname="PreviousFolder"  Fireant:keycode="219" Fireant:ctrl="true"
+            Fireant:layout="TodayDefault" style="display: none"></a></li>
+        <li class="cTodayToolBar DisplayNone"><a href="#" id="TodayNextFolderCmd" class="Command"
+            Fireant:commandname="NextFolder" Fireant:keycode="221" Fireant:ctrl="true" Fireant:layout="TodayDefault"
+            style="display: none"></a></li>
+    </ul>
+    <br style="clear: both" />
+</div>				
+            <div id="InfoPane" class="InfoPane DisplayNone" FireAnt:type="InfoPane" ></div>            
+        </div>
+    	<div id="MainResizeContainer" class="cMainResizeContainer">
+			<div class="cMainResizeContainerInner" id="cMainResizeContainerInner">
+			    <div id="ToolsColumn" class="cToolsColumn">
+				    <div id="SideBar" class="cTopToolsPane FillContainer" FireAnt:filldirection="vertical">
+    		                <ul id="FolderListPane" class="FolderList Menu"   
+    		                    FireAnt:multiselect="false" 
+    		                    FireAnt:itemtype="FolderItem" 
+    		                    FireAnt:usecheckboxes="false"
+                                FireAnt:actionimgalt_text="Folder actions"
+				                FireAnt:menuname="Folders" 
+				                 
+				                
+				                
+				                
+				                
+				                
+				                
+				                
+				                
+				                
+				                FireAnt:menucommands="{key:'rename',cmd:'RenameFolder',icon:'i_rename.gif',label:'Rename folder...'}, 
+				                                      {key:'delete',cmd:'DeleteFolder',icon:'i_delete.gif',label:'Delete folder'},
+				                                      {key:'empty',cmd:'EmptyFolder',icon:'glyph_empty_hover.gif',label:'Empty folder'},
+				                                      {key:'new',cmd:'NewFolder',icon:'i_newfolder.gif',label:'New folder...'}"></ul>
+                            <ul id="GroupListPane" class="GroupList Menu" tabindex="0"
+			                    FireAnt:multiselect="false" 
+			                    FireAnt:itemtype="ListItem" 
+			                    FireAnt:usecheckboxes="false"
+                                FireAnt:actionimgalt_text="Contact actions"
+			                    
+				                
+				                
+				                
+				                FireAnt:menuname="Groups"
+				                FireAnt:menucommands="{key:'email',cmd:'EmailGroup',icon:'i_send.gif',label:'E-mail group'},
+					                                  {key:'rename',cmd:'RenameGroup',icon:'i_rename.gif',label:'Rename group'},
+								                      {key:'delete',cmd:'DeleteGroup',icon:'i_delete.gif',label:'Delete group'},
+								                      {key:'new',cmd:'NewGroup',icon:'i_contact_group.gif',label:'New group...'}"></ul>
+				    </div>
+			        <div class="Separator"></div>
+			        <div class="cToolsCustomerCommunication" >
+                        
+<div id="CustComm_120x60" class="c120x60CustomerCommContainer" style="">
+    <iframe
+        id="CustComm_120x60_frame" 
+        allowTransparency="true"
+	    scrolling="no" 
+	    style="" 
+	    width="120" 
+	    height="60" 
+	    marginheight="0" 
+	    marginwidth="0" 
+	    frameborder="0" 
+	    
+		    src=""
+	    
+	    name="http://rad.live.com/ADSAdClient31.dll?GetAd=&AP=1026&PG=WLMUS7&UC=142"
+	    >
+    </iframe>
+</div>
+
+                    </div>
+                    <div class="Separator"></div>
+                    <div class="cPrivacyPane"><a href="http://privacy.msn.com" target="_blank">Privacy Statement</a></div>
+	                
+			    </div>
+			    <div id="ContentColumn" class="cContentColumn">
+			        <div id="ContentColumnInner" class="cContentInner">
+	                    
+			            <div id="ToolsColumnResizeSplitter" class="ResizeSplitter ToolsColumnSplitter"
+		                    FireAnt:splittername="ToolsColumn"
+                            FireAnt:styleblock_id="Inbox_ToolsColumn_ResizeStyle"
+                            FireAnt:fisrt_element="{ids:'ToolsColumn',selector:'.cToolsColumn',property:'width',minimum:'11',maximum:'22',startlength:'11.64em'}"
+                            FireAnt:second_element="{ids:'ContentColumn',selector:'.cContentColumn',property:'left',minimum:'20',maximum:'0',startlength:'11.64em'}"
+                            FireAnt:mousedirection="clientX"
+                            FireAnt:parent_container_id="MainResizeContainer"
+                            FireAnt:boundarie_property="clientWidth"
+                            FireAnt:omitfrom_vertical_resizecount="true"
+                            >
+                        </div>
+                        
+				        <div id="cMessageList" class="cMessageList MessageListWidth">
+                            <ul class="ListHeader ListStyleNone ToolBarList">
+                                <li class="CheckBoxListItem">
+                                    <label for="MessageListCheckAll" class="DisplayNone">select all</label>
+				                    <input type="checkbox" 
+				                        FireAnt:commandname="MessageListSelectToggle"
+				                        id="MessageListCheckAll"
+				                        class="Command FormCheckBox"/>
+                                </li>
+                                <li>
+		                        <a id="InboxSortMessagesCmdExp" class="Command MenuToggleButton" href="#"
+			                            
+			                            FireAnt:commandname="ShowSortMessagesMenu" 
+			                            FireAnt:type="spltExp" 
+			                            FireAnt:menuname="SortMessagesMenu" 
+			                            FireAnt:positionelemid="InboxSortMessagesCmdExp"
+			                            Fireant:spltopenalt="Open"
+			                            Fireant:spltclosealt="Close"
+										FireAnt:menucommands="{groupkey:'SortMessages', key:'SortMessagesLabel',label:'Sort by', css_class:'BoldText'},
+										{groupkey:'SortMessages', key:'Date',cmd:'SortMessages',label:'Date'},
+										{groupkey:'SortMessages', key:'Sender',cmd:'SortMessages',label:'From'},
+										{groupkey:'SortMessages', key:'Subject',cmd:'SortMessages',label:'Subject'},
+										{groupkey:'SortMessages', key:'Size',cmd:'SortMessages',label:'Size'},
+										
+										{groupkey:'ShowMessages', key:'ShowMessagesLabel',label:'Show only messages', separator:true, css_class:'BoldText'},
+										{groupkey:'ShowMessages', key:'Subject',cmd:'ShowMessages',label:'With subject...'},
+										{groupkey:'ShowMessages', key:'Sender',cmd:'ShowMessages',label:'From sender...'},
+										{groupkey:'ShowMessages', key:'Attachments',cmd:'ShowMessages',label:'With attachments'}
+										
+										">
+									    <img class="MenuToggleButton" alt="" src="http://gfx4.mail.live.com/mail/11.00/updatebeta/i_sort_descen.gif" />
+									    <span class="MenuToggleButton" id="InboxSortMessagesDisplayText" >Sort by date</span>
+									    <img class="MenuToggleButton MenuSpltIcon" alt="Open" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+								    </a>
+                                </li>
+                            </ul>
+
+                            <div id="MessageList_NoItems" class="cNoItemsInList DisplayNone" >No messages</div>
+					        <ul id="MessageList" class="MessageList Menu FillContainer ListStyleNone"  
+					            
+					            FireAnt:filldirection="vertical"
+						        FireAnt:menuname="MessageHeaders" 
+						        FireAnt:menucommands="{key:'reply',cmd:'Reply',icon:'i_reply.gif',label:'Reply'},
+											          {key:'replyall',cmd:'ReplyAll',icon:'i_replyall.gif',label:'Reply all'},
+											          {key:'forward',cmd:'Forward',icon:'i_forward.gif',label:'Forward'},
+											          {key:'read',cmd:'MarkAsRead',icon:'i_read.gif',label:'Mark as read', separator:true},
+											          {key:'unread',cmd:'MarkAsUnread',icon:'i_new.gif',label:'Mark as unread'},
+  											          {key:'deletemessage',cmd:'DeleteMessage',icon:'i_delete.gif',label:'Delete', separator:true},
+  											          {key:'reportanddeletemultiplemessages',cmd:'MarkMultipleAsJunk',icon:'i_junkEmail.gif',label:'Report & delete'},
+											          {key:'printmessage',cmd:'PrintMessage',icon:'i_print.gif',label:'Print', separator:true},
+											          {key:'viewmessagesource',cmd:'ViewMessageSource',icon:'i_viewsource.gif',label:'View source'}"
+						        FireAnt:paging="true" 
+						        FireAnt:itemsperpage="0" 
+						        FireAnt:multiselect="true" 
+						        FireAnt:itemtype="ListItem" 
+						        FireAnt:statshidden="false" 
+						        FireAnt:itemsdraggable="true" 
+						        FireAnt:dragelem_id="cDragAndDropIndicator"
+						        FireAnt:dragicon="i_multi_envelope.gif"
+						        FireAnt:usecheckboxes="true"						    
+						        FireAnt:pagingtext="Messages {0} - {1} of {2}"
+						        FireAnt:replyalttxt="Replied To" 
+						        FireAnt:forwardalttxt="Forwarded"
+						        FireAnt:attachalttxt="Attachment"
+						        FireAnt:hiprialttxt="High importance"
+						        FireAnt:lowprialttxt="Low importance"
+						        FireAnt:readalttxt="read"
+						        FireAnt:newalttxt="unread"
+						        FireAnt:checkboxtitle="select message"
+						        >
+					        </ul>
+					        <div id="ListFooter" class="ListFooter MenuItem">
+					            <div class="ListFooterInner">
+					                <div class="cStats" id="MessageListStats" >&nbsp;</div>
+
+						        </div>
+					            <div class="cPagination">
+
+						            <a href="#" class="PaginationButton" id="MessageListFirstPage">
+						                <img src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_firstpage.gif" 
+						                    alt="First page" 
+						                    class="Command" 
+						                    FireAnt:commandname="FirstMessagePage" 
+						                     />
+						            </a>
+
+
+						            <img id="MessageListFirstPageDisable" class="PaginationButton" 
+						                src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_firstpage_disable.gif" 
+						                alt="First page" />
+
+						            <a href="#" class="PaginationButton" id="MessageListPreviousPage">
+						                <img src="http://gfx3.mail.live.com/mail/11.00/updatebeta/i_previouspage.gif" 
+						                    alt="Previous page" 
+						                    class="Command" 
+						                    FireAnt:commandname="PreviousMessagePage" 
+						                     />
+						            </a>
+
+
+						            <img class="PaginationButton" id="MessageListPreviousPageDisable" 
+						                src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_previouspage_disable.gif" 
+						                alt="Previous page" />
+
+						            <a href="#" class="PaginationButton" id="MessageListNextPage">
+						                <img src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_nextpage.gif" 
+						                    alt="Next page" 
+						                    class="Command" 
+						                    FireAnt:commandname="NextMessagePage" 
+						                     />
+						            </a>
+
+
+						            <img class="PaginationButton" id="MessageListNextPageDisable" 
+						                src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_nextpage_disable.gif" 
+						                alt="Next page" />
+
+						            <a href="#" class="PaginationButton" id="MessageListLastPage">
+						                <img src="http://gfx1.mail.live.com/mail/11.00/updatebeta/i_lastpage.gif" 
+						                    alt="Last page" 
+						                    class="Command" 
+						                    FireAnt:commandname="LastMessagePage" 
+						                     />
+						            </a>
+
+						            <img class="PaginationButton" id="MessageListLastPageDisable" 
+						                src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_lastpage_disable.gif" 
+						                alt="Last page" />
+					            </div>
+					        </div>
+				        </div>
+		                
+                            <div id="MessageListPaneBottomResizeSplitter" class="ResizeSplitter MessageListSplitterPaneBottom DisplayNone" 
+                                FireAnt:splittername="MessageListPaneBottom"
+                                FireAnt:styleblock_id="Inbox_ReadingPaneBottom_ResizeStyle"
+                                FireAnt:fisrt_element="{ids:'cMessageList',selector:'.Inbox.ReadingPaneOn.PaneBottom .cMessageList, .Inbox.ReadingPaneOn.PaneBottom .Web_UI_DragDrop .MessageItemUnread, .Inbox.ReadingPaneOn.PaneBottom .Web_UI_DragDrop .MessageItemRead',property:'height',minimum:'10',maximum:'60',startlength:'10em'}"
+                                FireAnt:second_element="{ids:'ReadMessageContainer',selector:'.Inbox.ReadingPaneOn.PaneBottom .cReadMessageContainer',property:'height',minimum:'10',maximum:'60',startlength:'25em'}"
+                                FireAnt:mousedirection="clientY"
+                                FireAnt:parent_container_id="ContentColumnInner"
+                                FireAnt:boundarie_property="clientHeight"
+                                FireAnt:omitfrom_vertical_resizecount="true"
+                                >
+                            </div>
+                        
+				        <div id="ReadMessageContainer" class="cReadMessageContainer FillContainer" FireAnt:filldirection="both">
+				            
+                                <div id="MessagListPaneRightResizeSplitter" class="ResizeSplitter MessageListSplitterPaneRight DisplayNone" 
+                                    FireAnt:splittername="MessageListPaneRight"
+                                    FireAnt:styleblock_id="Inbox_ReadingPaneRight_ResizeStyle"
+                                    FireAnt:fisrt_element="{ids:'cMessageList',selector:'.Inbox.ReadingPaneOn.PaneRight .MessageListWidth, .Inbox.ReadingPaneOn.PaneRight .Web_UI_DragDrop .MessageItemUnread, .Inbox.ReadingPaneOn.PaneRight .Web_UI_DragDrop .MessageItemRead',property:'width',minimum:'10',maximum:'0',startlength:'19.47em'}"
+                                    FireAnt:second_element="{ids:'ReadMessageContainer',selector:'.Inbox.ReadingPaneOn.PaneRight .cReadMessageContainer',property:'left',minimum:'30',maximum:'0',startlength:'19.9em'}"
+                                    FireAnt:mousedirection="clientX"
+                                    FireAnt:parent_container_id="ContentColumnInner"
+                                    FireAnt:boundarie_property="clientWidth"
+                                    >
+                                </div>
+                            
+                            <div class="cReadMessageContainerInner">
+					            <div id="ReadMessagePane" class="ReadMessagePane"
+					                FireAnt:type="ReadMessagePane"
+					                FireAnt:nomessagautoselecthint_id="NoMessageAutoSelectedHint"
+					                FireAnt:messageloadingindicator_id="MessageLoadingIndicator"
+					                FireAnt:multiplemessagesstringtemplate="{0} messages are selected"
+					                FireAnt:messagesselected_id="MessagesSelectedTitle"
+					                FireAnt:onemessageselectedtemplate="1 message is selected">
+					            </div>
+	                            <div id="MessageLoadingIndicator" class="cMessageLoadingIndicator">
+		                            <img alt="" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_animated_loading_32_2.gif"  />Loading...
+	                            </div>
+					            <div id="NoMessageAutoSelectedHint" class="cNoMessageAutoSelectedHint" >
+				                    <h2>No message is selected</h2>
+				                    <p>Click any message to view it in the reading pane.  Attachments, pictures, and links from unknown senders are blocked to help protect your privacy and safety.</p>
+				                    <p>To show messages automatically when you select a folder, 
+				                    <a class="Command" FireAnt:subsection="13" FireAnt:commandname="MailOptionsLink" href="#">change your reading pane settings</a></p>
+					            </div>
+				                <div class="cMultiSelect MessageHeaders" >
+					                <h2 id="MessagesSelectedTitle"></h2>
+					                <p>
+					                <a class="Command" FireAnt:commandname="MarkMultipleAsJunk">Report & delete</a> |
+					                <a class="Command" FireAnt:commandname="MarkMultipleAsNotJunk">Allow sender</a>
+					                </p>
+				                </div>
+				            </div>
+				        </div>
+				        
+<div class="cEditMessagePane">
+    <div class="cEditMessageMain" onscroll="this.scrollTop='0px';">
+        <div class="cEditMessageMainInner">
+	        <form id="cEditPane" action="" class="EditMessagePane Menu"
+			    
+			    FireAnt:menuname="SuggestionMenu" 
+			    FireAnt:menucommands="{key:'Suggestion0',cmd:'PickSuggestion',icon:'',label:'Suggestion0'},
+		                          {key:'Suggestion1',cmd:'PickSuggestion',icon:'',label:'Suggestion1'},
+		                          {key:'Suggestion2',cmd:'PickSuggestion',icon:'',label:'Suggestion2'},
+		                          {key:'Suggestion3',cmd:'PickSuggestion',icon:'',label:'Suggestion3'},
+		                          {key:'Suggestion4',cmd:'PickSuggestion',icon:'',label:'Suggestion4'},
+					              {key:'IgnoreAll',cmd:'IgnoreAll',icon:'',label:'Ignore All',separator:true},
+		                          {key:'AddToDictionary',cmd:'AddToDictionary',icon:'',label:'Add To Dictionary'}">
+	            <div class="cEditMessagePaneHeaders">
+                    <div id="cEditPane_Hip" class="HipTextContainer"></div>
+                    
+                    <ul class="ListStyleNone EditMessageActionBar">
+			            <li class="cAttachLogo">
+				            <a href="http://www.trendmicro.com" target="_blank"><img title="Safety checks provided by Trend Micro �" alt="Safety checks provided by Trend Micro �" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_trend_small.gif" /></a>
+				            
+			            </li>
+
+                        <li id="cEditPane_CcBcc" class="CcBcc">
+                                <a href="#" class="Command" 
+                                    FireAnt:commandname="AddCcBccToEditPane" >
+                                    Show Cc & Bcc</a>
+                        </li>
+                        <li class="Label">From:</li>
+                        <li>
+                            <a class="FromDropDownContainer Command Menu MenuToggleButton" 
+                                id="cEditPane_FromAddress"
+                                FireAnt:commandname="ShowFromAddressMenu"
+                                Fireant:hoverclass="ButconHover"
+                                Fireant:spltopenalt="Open"
+                                Fireant:spltclosealt="Close"
+                                
+                                >
+			                    <span class="MenuToggleButton" id="cEditPane_FromDropdownText" ></span>
+                                <img class="MenuToggleButton MenuSpltIcon" alt="Open" src="http://gfx2.mail.live.com/mail/11.00/updatebeta/i_expand.gif" />
+                            </a>
+                        </li>
+                    </ul>
+			        <div class="cRow ClearBoth">
+				        <div class="Label">
+				            <a class="Command Butcon ContactPickerCommand" href="#" 
+				                id="cEditPane_cToContactPicker"
+				                title="Choose a contact"				                
+				                FireAnt:commandname="DisplayContactPicker" 
+                                Fireant:hoverclass="ButconHover"
+				                FireAnt:textareadestinationname="fTo"
+				                FireAnt:ps="90362"
+				                FireAnt:type="spltExp"
+				                >
+				                <img alt="Choose a contact" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_contacts.gif"  />
+				                To...
+				            </a>
+				            <label for="cEditPane_cEditMessageToAutoCompleteInput" class="DisplayNone">To...</label>
+				        </div>
+				        <div class="Values">
+				            <div class="ValuesInner">
+					            <textarea rows="" cols="" name="fTo" class="EditMessageAutoCompleteInput"
+					                id="cEditPane_cEditMessageToAutoCompleteInput"
+					                FireAnt:autocompletelistid="cEditPaneAutoCompleteList" 
+					                FireAnt:ps="90363" 
+					                FireAnt:onkeydown_selectionkeycodes="9,13,188,186"
+                                    FireAnt:downarrowdisplayslist="false"
+                                    FireAnt:matchingitemdelimeters="; ,"
+					                tabindex="1" ></textarea>
+					        </div>
+				        </div>
+		  
+			        </div>
+			        <div class="cRow CcBccRow DisplayNone">
+				        <div class="Label">
+				            <a class="Command Butcon ContactPickerCommand" href="#" 
+				                id="cEditPane_cCcContactPickerCmd"
+				                title="Choose a contact"
+				                FireAnt:commandname="DisplayContactPicker" 
+                                Fireant:hoverclass="ButconHover"
+				                FireAnt:textareadestinationname="fCc"
+				                FireAnt:ps="90362"
+				                FireAnt:type="spltExp"
+				                >
+				                <img alt="Choose a contact" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_contacts.gif"  />
+				                Cc...
+				            </a>
+				            <label for="cEditPane_cEditMessageCcAutoCompleteInput" class="DisplayNone">Cc...</label>
+				        </div>
+				        <div class="Values">				            
+				            <div class="ValuesInner">
+					            <textarea rows="" cols="" name="fCc" class="EditMessageAutoCompleteInput" 
+					                id="cEditPane_cEditMessageCcAutoCompleteInput"
+					                FireAnt:autocompletelistid="cEditPaneAutoCompleteList" 
+					                FireAnt:ps="90363" 
+					                FireAnt:onkeydown_selectionkeycodes="9,13,188,186"
+                                    FireAnt:downarrowdisplayslist="false"
+                                    FireAnt:matchingitemdelimeters="; ,"
+					                tabindex="1" ></textarea>
+					        </div>
+				        </div>
+			        </div>
+			        <div class="cRow CcBccRow DisplayNone">
+				        <div class="Label">
+				            <a class="Command Butcon ContactPickerCommand" href="#" 
+				                id="cEditPane_cBccContactPickerCmd"
+				                title="Choose a contact"
+				                FireAnt:commandname="DisplayContactPicker" 
+                                Fireant:hoverclass="ButconHover"
+				                FireAnt:textareadestinationname="fBcc"
+				                FireAnt:ps="90362"
+				                FireAnt:type="spltExp"
+				                >
+				                <img alt="Choose a contact" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_contacts.gif"  />
+				                Bcc...
+				            </a>
+				            <label for="cEditPane_cEditMessageBccAutoCompleteInput" class="DisplayNone">Bcc...</label>
+				        </div>
+				        <div class="Values">				            
+				            <div class="ValuesInner">
+					            <textarea rows="" cols="" name="fBcc" class="EditMessageAutoCompleteInput"
+					                id="cEditPane_cEditMessageBccAutoCompleteInput"
+					                FireAnt:autocompletelistid="cEditPaneAutoCompleteList" 
+					                FireAnt:ps="90363" 
+					                FireAnt:onkeydown_selectionkeycodes="9,13,188,186"
+                                    FireAnt:downarrowdisplayslist="false"
+                                    FireAnt:matchingitemdelimeters="; ,"
+					                tabindex="1" ></textarea>
+					        </div>
+				        </div>
+			        </div>
+			        <div  class="cRow">
+				        <div class="Label">
+				            <span class="ComposeSubj"><label for="tempSubject">Subject: </label>
+				            </span>
+				        </div>
+				        <div class="Values"><input id="tempSubject" type="text" name="fSubject" tabindex="1" maxlength="1024"
+				        onkeydown="if(event.keyCode==13){event.cancelBubble = true; return false;}"  /></div>
+			        </div>
+		        </div>		    
+		        <div class="cAttach">
+			        <div class="cRow DisplayNone">
+				        <div class="Label">
+				            <span class="ComposeSubj">Attachments: </span>
+				        </div>
+			            <div class="Values">
+			                <div id="cEditPane_cEditMessagePaneAttachments" class="EditMessagePaneAttachments BorderContainerOutline"></div>
+			            </div>         
+			        </div>        
+			        <div id="cSaveSentMessagesNotify" class="DisplayNone">
+					    Your sent message won't be saved. 
+					    <a class="cSaveSentLink Command" FireAnt:commandname="NavigateToSaveSentOption" href="#" >Save sent messages</a>
+			        </div>
+			        <input type="hidden" name="MsgPriority" value="0" />
+    		        <iframe class="AttachmentUploadIframe" frameborder="0" scrolling="no"></iframe>
+		        </div>
+				<div class="cUploadInfo DisplayNone" id="cEditPane_cUploadInfo">
+					<img src="http://gfx1.mail.live.com/mail/11.00/updatebeta/animated_loading.gif" alt="" />
+				Scanning & uploading
+					<span id="cEditPane_UploadFileNme"></span>
+					<a href='#' onclick="DoHelp('PIM_WriteMessage');">More Information</a>
+					<span class="cUploadInfoCancel"><a> | </a> <a class="Command" id="cEditPane_cCancelUploadInProgressCmd" FireAnt:commandname="CancelUploadInProgress" >Cancel</a></span>
+				</div>
+	        </form>
+	    </div>
+	    <div class="cRTE FillContainer" FireAnt:filldirection="vertical">
+	        <label for="fEditArea" class="DisplayNone">Message body</label>
+	        <div id="fEditArea" tabindex="1" class="EditArea" ></div>
+	    </div>
+    </div>
+    <div class="cSendPhoto">
+        <div id="cSendPhotoInstallText">
+            <p />
+            Easily edit and attach photos for free!
+            <p />
+            Click <b>Install</b> for a free upgrade of your ability to work with photos and send them in e-mail messages. If a security warning message appears, click <b>Yes</b>.
+	        <p />
+	        After the tool is installed (the download will take approximately 3 to 4 minutes with a 56-Kbps modem), you will be able to preview photos on your computer and attach one or many photos at once. You can also rotate and/or resize your photos before attaching them to your message.
+	        <p />
+	        If you do not want to install this control you can still attach files (including photos) to messages--click Cancel below, and then use the Attach button and choose File. However, you won't be able to preview or edit your photos, or attach more than one file at a time.
+        </div>
+        <div>
+            Locate the folder that contains the images you want to attach to the message, and then use the checkboxes to select images before clicking the Attach Files button. <b>Note:</b> the Attach Files button will only attach images from the currently selected folder.
+            <p />
+            <div id="cSendPhotoControlDiv" style="display:none"></div>
+            <p />
+            Windows Live Mail resizes large images so that they are more easily viewed, sent, and stored online. Your images will be reduced in size so they are at most 600 pixels wide or tall. 
+            <p />
+            To send full-size pictures, click Cancel. When you compose a new message, click Attach Files
+            <p />
+        </div>
+    </div>
+    <div class="cWaitForUpload" >
+	    
+    </div>
+</div>
+
+			            <div class="cContactList ContactListWidth" id="cContactList" >
+				            <div id="ContactList_NoItems" class="cNoItemsInList DisplayNone" >No contacts</div>
+				            <ul id="ContactList" class="ContactList ListStyleNone" 
+					            FireAnt:itemtype="ListItem"
+					            FireAnt:multiselect="true"
+					            FireAnt:usecheckboxes="false"
+					            FireAnt:itemsdraggable="true"
+					            FireAnt:dragelem_id="cDragAndDropIndicator"
+					            FireAnt:dragicon="i_contacts_drag.gif"
+					            FireAnt:pagingtext="Contacts {0} - {1} of {2}"
+					            ></ul>
+			            </div>
+			            <div class="cMainContactContainer FillContainer" id="cMainContactContainer" FireAnt:filldirection="horizontal">
+			                
+                                <div id="ContactListResizeSplitter" class="ResizeSplitter ContactListSplitter DisplayNone"
+                                    FireAnt:splittername="ContactList"
+                                    FireAnt:styleblock_id="Contacts_ContactsDefault_ResizeStyle"
+                                    FireAnt:fisrt_element="{ids:'cContactList',selector:'.Contacts.ContactsDefault .ContactListWidth, .Contacts.ContactsDefault .Web_UI_DragDrop .ContactListItem',property:'width',minimum:'5',maximum:'0',startlength:'19.47em'}"
+                                    FireAnt:second_element="{ids:'cMainContactContainer',selector:'.Contacts.ContactsDefault .cMainContactContainer',property:'left',minimum:'5',maximum:'0',startlength:'19.9em'}"
+                                    FireAnt:mousedirection="clientX"
+                                    FireAnt:parent_container_id="ContentColumnInner"
+                                    FireAnt:boundarie_property="clientWidth"
+                                    >
+                                </div>
+                            
+		                    <div class="cMainContactContainerInner">
+		                        <div class="ContactsReadPane" FireAnt:type="ContactsReadPane" id="ContactsReadPane"></div>
+			                    <div class="ContactsEditPane" FireAnt:type="ContactsEditPane" id="ContactsEditPane"></div>
+                                <div class="cMultiSelect Contacts"><H2>Multiple contacts are selected.</H2></div>
+                            </div>
+                        </div>
+		                <div class="cTodayPage">
+		                    <div id="TodayPagePane" class="cTodayPagePane" ></div>
+		                </div>
+			            <div class="cSendMailConfirm">
+				            <div id="SentMailContactList" class="SentMailContactList FillContainer" 
+				                FireAnt:filldirection="vertical"
+				                FireAnt:minheightpx="30"
+					            FireAnt:itemsperpage="0" 
+					            FireAnt:multiselect="false"
+					            FireAnt:usecheckboxes="false"
+					            FireAnt:itemtype="ListItem" 
+					            FireAnt:pagingtext="Contacts {0} - {1} of {2}"
+					            >
+				            </div>
+                            
+<div id="CustComm_300x125_SMCPage" class="cSmcCustomerCommunication" style="">
+    <iframe
+        id="CustComm_300x125_SMCPage_frame" 
+        allowTransparency="true"
+	    scrolling="no" 
+	    style="" 
+	    width="300" 
+	    height="125" 
+	    marginheight="0" 
+	    marginwidth="0" 
+	    frameborder="0" 
+	    
+		    src=""
+	    
+	    name="http://rad.live.com/ADSAdClient31.dll?GetAd=&AP=1419&PG=WLMUS6&UC=142"
+	    >
+    </iframe>
+</div>
+
+			            </div>
+		            </div>
+		            <div id="cRadAdsToday" class="BorderContainerOutline cRadAds">
+                        
+                        
+<div id="CustComm_300x125_TodayPage" class="" style="">
+    <iframe
+        id="CustComm_300x125_TodayPage_frame" 
+        allowTransparency="true"
+	    scrolling="no" 
+	    style="" 
+	    width="300" 
+	    height="125" 
+	    marginheight="0" 
+	    marginwidth="0" 
+	    frameborder="0" 
+	    
+		    src=""
+	    
+	    name="http://rad.live.com/ADSAdClient31.dll?GetAd=&AP=1419&PG=WLMUS5&UC=142"
+	    >
+    </iframe>
+</div>
+
+                    </div>
+                    
+		        </div>
+		    </div>
+		</div>
+        <div id="ContactPickerHeader" class="ContactPickerHeader DisplayNone" FireAnt:pickername="EditMessagePicker"
+            FireAnt:autocompletelistid="cEditPaneAutoCompleteList" >
+            <div>
+                <img id="ContactPickerCloseContactPickerCmd" class="Command"  FireAnt:commandname="CloseContactPicker" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/glyph_close_rest.gif" alt="" />
+                <div>Contacts</div>
+            </div>
+        </div>
+        <div id="FindMailContactPicker" class="ContactPickerHeader DisplayNone FindMailElem" FireAnt:pickername="FindMailPicker"
+            FireAnt:autocompletelistid="cFindMailAutoCompleteList">
+            <div class="FindMailElem">
+                <img id="FindMailContactPickerClose" class="Command FindMailElem"  FireAnt:commandname="CloseContactPicker" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/glyph_close_rest.gif" alt="" />
+                <div class="FindMailElem">Contacts</div>
+            </div>
+         </div>
+		
+
+<div class="AutoCompleteList " 
+    id="cEditPaneAutoCompleteList"  
+    FireAnt:id="cEditPaneAutoCompleteList" 
+    FireAnt:size="7" 
+    FireAnt:selectfirstitem="true"
+    ></div>
+		
+
+<div class="AutoCompleteList SearchContactsList" 
+    id="cSearchContactsList"  
+    FireAnt:id="cSearchContactsList" 
+    FireAnt:size="7" 
+    FireAnt:selectfirstitem="false"
+    ></div>
+		
+
+<div class="AutoCompleteList " 
+    id="cFindMailAutoCompleteList"  
+    FireAnt:id="cFindMailAutoCompleteList" 
+    FireAnt:size="7" 
+    FireAnt:selectfirstitem="false"
+    ></div>
+		
+		<iframe id="GenericHoverFrame" scrolling="no" marginheight="0" marginwidth="0" frameborder="0"></iframe>
+        <img id="wlmPerfBeacon" alt="" name="http://h.live.com/c.gif?wlm=" width="1" height="1" />
+		
+			<img id="cleargif" alt="" name="http://h.live.com/c.gif?RF=&PI=44364&DI=5707&PS=" width="1" height="1" />
+		        <div id="FindMailPane" class="FindMail FindMailElem DisplayNone" 
+                FireAnt:querysenderinputid="FindBySenderInput" 
+                FireAnt:querysubjectinputid="FindBySubjectInput" 
+                FireAnt:anchorid="cMessageList" 
+                FireAnt:contactpickername="FindMailPicker" >
+            <img class="Command FindMailCloseButton" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/glyph_close_rest.gif" alt="" FireAnt:commandname="CloseFindMail" />
+	        <div class="FindMailElem FindBySubjectElem" >
+	            Find messages with this subject (in all folders):
+	        </div>
+	        <div class="FindMailElem FindBySenderElem" >
+	            Find messages with this sender (in all folders):
+	        </div>
+	        
+	        <div class="FindSection FindMailElem">
+	        	<div class="FindMailElem FindBySubjectElem">
+	                <input id="FindBySubjectInput" type="text" class="FindMailInput FindMailElem" />
+	            </div>
+	            <div class="FindMailElem FindBySenderElem cRow">
+	            	<a class="Command Butcon FindMailPickerCommand FindMailElem" href="#" 
+				                title="Choose a contact"				                
+				                FireAnt:commandname="DisplayFindMailContactPicker" 
+				                FireAnt:textareadestinationname="FindBySenderInput"
+				                FireAnt:ps="90362"
+				                >
+				                <img class="FindMailElem" alt="Choose a contact" src="http://gfx5.mail.live.com/mail/11.00/updatebeta/i_contacts.gif" />
+				    </a>
+	                <input id="FindBySenderInput" type="text" class="FindMailInput FindMailElem FindMailAutoCompleteInput" 
+	                    
+	                	FireAnt:ps="90363" 
+					    FireAnt:onkeydown_selectionkeycodes="9,13,188,186"
+                        FireAnt:downarrowdisplayslist="false"
+                        FireAnt:matchingitemdelimeters="; ,"
+	                    FireAnt:autocompletelistid="cFindMailAutoCompleteList" />
+	            </div>
+	            
+	            <div class="FindMailButtonContainer FindMailElem">
+	                <a href="#" class="Command FindMailElem" FireAnt:commandname="FindMessages"  >
+	                    <span class="FindMailElem">
+                            <span class="FindMailButton FindMailElem"><span>Find</span></span>
+	                    </span>
+	                </a>
+	                
+	            </div>
+	        </div>
+	  
+	    </div>
+	<script type="text/javascript">
+	    var g_sInboxLayoutId = null, 
+	    g_layout = null, 
+	    g_theme = -1, 
+	    g_observer = null, 
+	    g_delay = null, 
+	    g_ads = null, 
+	    g_windowResize = null, 
+	    g_iFontSize = 11, 
+	    g_profileObj = null,
+        g_controller = null,
+        g_wlmPerfBeacon = null,
+        g_bootstrapManager = null,
+        g_historyEngine = null;
+
+    	
+        var g_helpUrl = "http://help.live.com/resources/neutral/launchhelp.js";
+        
+        var g_helpPaneMarket = "en-US";
+        var g_isDebug = "false";  
+        
+        var g_imgUrlCache={};
+        var g_imgSvrUrls = [ "http://gfx1.mail.live.com/mail/11.00/updatebeta"
+            
+            , "http://gfx2.mail.live.com/mail/11.00/updatebeta"
+            
+            , "http://gfx3.mail.live.com/mail/11.00/updatebeta"
+            
+            , "http://gfx4.mail.live.com/mail/11.00/updatebeta"
+            
+            , "http://gfx5.mail.live.com/mail/11.00/updatebeta"
+            
+            ];
+        function GetImgUrl(img)
+        {   
+            if(!g_imgUrlCache[img])
+            {
+                var v=0,c=img.length;
+                for(var i=0;i<c;++i)
+                    v+=img.charCodeAt(i);
+                g_imgUrlCache[img]=g_imgSvrUrls[v%g_imgSvrUrls.length]+"/"+img;
+            }
+            return g_imgUrlCache[img];
+        }
+
+        var g_theme_service_url = "stylesheet_11.09.0000.0123.aspx?theme={0}&culture=en-US";
+        var g_folderListBindingParams = {
+	        "emptyfolderlinktext" : "Empty this folder"
+	        };
+	
+	    var g_editMessagePaneBindingParams = {
+            "messagenotsavedwarningmsg" : "You have not sent your message. Are you sure you want to discard it%3f",
+            "gblnoconnecterr" : "We can%27t connect to Windows Live Mail right now. Please make sure that you%27re connected to the Internet and try again",
+            "imagebaseurl" : "http://gfx5.mail.live.com/mail/11.00/updatebeta/",
+            "localimageserver" : "http://gfx5.mail.live.com/mail/11.00/updatebeta/",
+            "rte" : "rte.js",
+            "languagecode" : "en-us",
+            "photocontrolresource": "",
+            "taxonomyidssserver" : "http://h.live.com",
+            "scriptfilebaseurl" : "http://gfx6.mail.live.com/mail/11.09.0000.0123/",
+            "hostname" : "by124w.bay124.mail.live.com",
+            "taxonomypi" : "44364",
+            "taxonomydivalue" : "5707",
+            "taxonomyattachmentsuploadingcleargifps" : "85765",
+            "taxonomythirdpartytrackingcleargif" : "",
+            "sendphotoctrlinstallfailedmsg" : "We were unable to install the ActiveX control %27MSN Photo Upload Tool%27 from %27Microsoft Corporation MSN%27. If you see a gold bar at the top of your browser%2c please click it to install. Otherwise%2c click Install to try again.",
+            "alreadyuploadingmsg" : "Windows Live Mail can only upload one file at a time to the server. Please wait until this file is done uploading.",
+            "uploadfilefailuremsg" : "Windows Live Mail was unable to attach your file because of technical difficulties.  Please try again later.",
+            "uploadfilepostfailuremsg" : "Windows Live Mail did not receive the entire file you uploaded. This is usually due to a temporary internet connectivity issue. Please try your file upload again.",
+            "uploadtimeoutmsg" : "Windows Live Mail did not receive the entire file you uploaded because the upload process timed out. This is usually due to a slow internet connection or attempting to attach a very large file.",
+            "uploadtimeout" : 900000,
+            "filenametoolongmsg" : "Windows Live Mail was unable to attach your file because the filename is too long.  Please rename the file you would like to attach and try again.",
+            "removeattachmenttxt" : "Remove",
+            "addemailaddress" : "Add an e-mail address..."
+            };
+
+        var g_controllerBindingParams = {
+            "version" : "_11.09.0000.0123",
+            "resizecookie" : "rs",
+            "keypressdelay" : "500",
+            "useractionsperadrefresh" : "1",
+            "adsminrefreshrate" : "2",
+            "sysfldrsearch" : "66666666-6666-6666-6666-666666666666",
+            "sysfldrtrash" : "00000000-0000-0000-0000-000000000002",
+            "sysfldrjunk" : "00000000-0000-0000-0000-000000000005",
+            "sysfldrhdntrash" : "00000000-0000-0000-0000-000000000006",
+            "sysfldrsentitems" : "00000000-0000-0000-0000-000000000003",
+            "sysfldrdrafts" : "00000000-0000-0000-0000-000000000004",
+            "jsdocdomain" : "mail.live.com",
+            "userhash" : "1481424277",
+            "spellingoptionsdisplaytext_id": "SpellingOptionsDisplayText",
+            "savesentmessagesnotify_id": "cSaveSentMessagesNotify",
+            "messagelist_arrangeby_id": "InboxSortMessagesCmdExp",
+            "taxonomyidssserver" : "http://h.live.com",
+            "legal_url" : "http://g.msn.com/0TO_/enus",
+            "imprint_url" : "",
+            
+            
+            "sortbyfrom" : "From",
+            "sortbyto" : "To",
+            "cannotprintmsg" : "This feature is not available when you have multiple messages selected.",
+            "newfoldermsg" : "New folder...",
+            "emptyfolderconfmsg" : "Are you sure you want to empty this folder%3f",
+            "nomsgselectedmsg" : "You need to select at least one message to perform this action. To select one message%2c just click it. To select multiple%2c hold down the Shift and click the desired messages.",
+            "missingcontactemailmsg" : "The selected contact does not have an e-mail address.  Please edit the contact information to add an e-mail address.",
+            "multimsgselectedmsg" : "This feature is not available when you have multiple messages selected.",
+            "multicontactoperrmsg" : "You can%27t do this when more than one item is selected.",
+            "multicontactoperrmsgps" : "85804",
+            "defaultgroupname" : "New group...",
+            "navigateawayconfirmation1" : "A draft of your current message has been saved.",
+            "navigateawayconfirmation2" : "Are you sure you want to navigate away from this page%3f",
+            "messagenotsavedwarningmsg" : "You have not sent your message. Are you sure you want to discard it%3f",
+            "youcontacttitle": "Edit your own contact information",
+            "youcontactmsg": "You",
+            "youcontacturl": "http://spaces.live.com/profile.aspx?action=edit&mode=activecontacts&mkt=en-us&returnName=Contacts&returnURL=http://www.hotmail.msn.com/cgi-bin/sbox?rru=contacts",
+            "sortmessageslabel" : "Sort by %7b0%7d",
+            "newgrouplabel" : "New group...",
+            "newfolderlabel" : "New folder...",
+            "nocontactsavailable" : "You need at least one contact before you can do this. Please add a contact.",
+            "spellchecklimiterror" : "Windows Live Mail checks spelling on up to 2000 characters.  The rest of your mail was not checked",
+            "spellchecklimit" : 2000,
+            
+            
+		    "defaultfpptimeout" : 20000,
+		    "fppversion" : "1",
+		    "fppcmd" : "0",
+            "sessionidhash" : "WfrSKV6zKu7HTG6uYRuTmg%3d%3d",
+            "authuser" : "1481424277",
+            "canary" : "mt",
+            "fppretry" : 2,
+            		    
+            
+            "sysfldrinbox" : "00000000-0000-0000-0000-000000000001",
+		    "disableContactsControl" : "Windows Live Mail was not able to initialize the Contacts Control.  This feature has been disabled.",
+            "enablestacktraces" : "false",
+            "enableloadingindicator" : "true",
+            "loadingindicatordelay" : 750,
+            "errorframe" : "%5b%22%5cr%5cn%3cdiv class%3d%5c%22cInfoPane priority-medium%5c%22%3e%5cr%5cn    %3cdiv class%3d%5c%22cInfoPaneInner%5c%22%3e%5cr%5cn%5ct%3cdiv class%3d%5c%22cInfoPaneIconContainer%5c%22%3e%3cimg alt%3d%5c%22Warning%5c%22 src%3d%5c%22http%3a%2f%2fgfx5.mail.live.com%2fmail%2f11.00%2fupdatebeta%2fi_warn.gif%5c%22%2f%3e%3c%2fdiv%3e%5cr%5cn%5ct%3cdiv%3e%5cr%5cn%5ct%3cspan%3e%7b0%7d%3c%2fspan%3e%5cr%5cn%5ct%7b1%7d%5cr%5cn%5ct%5cr%5cn%5ct%5ct%7b3%7d%5cr%5cn%5ct%5cr%5cn%5ct%7b2%7d%5cr%5cn%5ct%5cr%5cn    %3c%2fdiv%3e%5cr%5cn%5ct%3c%2fdiv%3e%5cr%5cn%3c%2fdiv%3e%5cr%5cn%22%2c%22%3cdiv class%3d%5c%22cExtended%5c%22%3e%5cr%5cn%5ct%5ct%5ct%3cspan%3e%7b0%7d%3c%2fspan%3e%5cr%5cn%5ct%5ct%5ct%5ct%5cr%5cn%5ct%5ct%3c%2fdiv%3e%22%2c%22%3cimg alt%3d%5c%22%5c%22 width%3d%5c%221%5c%22 height%3d%5c%221%5c%22 style%3d%5c%22position%3aabsolute%3b%5c%22 src%3d%5c%22http%3a%2f%2fh.live.com%2fc.gif%3fRF%3dinfopane%26PI%3d44364%26DI%3d5707%26PS%3d%7b0%7d%5c%22 %2f%3e%22%2c%22%3cspan class%3d%5c%22cLinks%5c%22%3e%5cr%5cn%5ct    %5cr%5cn%5ct%5ct%5ct    %3ca class%3d%5c%22Command%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    FireAnt%3acommandname%3d%5c%22InfoPaneClickButton%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    FireAnt%3acommandcode%3d%5c%221%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    FireAnt%3adata%3d%5c%22%7b1%7d%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    href%3d%5c%22%23%5c%22%5cr%5cn%5ct%5ct%5ct%5ct    %5cr%5cn%5ct%5ct%5ct%5ct    %3e%7b0%7d%3c%2fa%3e%5cr%5cn%5ct    %5cr%5cn%5ct%5ct%5ct    %7c %3ca class%3d%5c%22Command%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    FireAnt%3acommandname%3d%5c%22InfoPaneClickButton%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    FireAnt%3acommandcode%3d%5c%222%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    FireAnt%3adata%3d%5c%22%5c%22 %5cr%5cn%5ct%5ct%5ct%5ct    href%3d%5c%22http%3a%2f%2fsupport.live.com%2fdefault.aspx%3fproductkey%3dwlmail%5c%22%5cr%5cn%5ct%5ct%5ct%5ct    %5cr%5cn%5ct%5ct%5ct%5ct%5ct    target%3d%5c%22_blank%5c%22%5cr%5cn%5ct%5ct%5ct%5ct    %5cr%5cn%5ct%5ct%5ct%5ct    %3eNetwork status%3c%2fa%3e%5cr%5cn%5ct    %5cr%5cn%5ct%3c%2fspan%3e%22%5d",
+            "unsubscribefromlistquestion" : "The mail will be marked as junk. Click OK to be removed from this list only if you had subscribed to this list previously.",
+            "removefromallowedlistquestion" : "The mail will be marked as junk. Would you also like to block any future e-mail to this mailing list or sent to this e-mail address%3f",
+            "allowreportingjunkquestion" : "The mail will be marked as junk. Would you also like to enable reporting of junk mail to Microsoft %26 third parties%3f",
+            "cannotreplytoaddr" : "You cannot reply to this address.",
+            "cannotreplyphishing" : "You cannot reply to%2fforward an unopened fraudulent message.  Please open the message and read it before replying.",
+            "cannotfwdmessage" : "You cannot forward this message.",
+            "replyfwdwithpicq" : "This message is from an unknown sender.  Forwarding or replying will display any pictures or links in the message and may allow the sender to track you.  Would you like to include the pictures from the original mail in your message%3f",
+            "missingrecipients" : "Please type at least one valid email addresses or group name in the To%2c CC%2c and%2for Bcc text boxes.",
+            "waitforupload" : "Please wait until your attachment has finished uploading.",
+            "cannotsortmsg" : "Windows Live Mail  currently does not support changing the sort order in search results.",
+            "glblreporterr" : "Report this issue to Microsoft.",
+            "emptyquery" : "Please type in one or more words to search.",
+            "searchresults" : "Search Results",
+            "smcaddcontact" : "%2bAdd contact",
+            "smcalreadyinaddrbk" : "Already a contact",
+            "allcontactsmsg" : "All contacts (%7b0%7d)",
+            "addtogroupmsg" : "Add to group%3a",
+            "tasknotcompletederr" : "This task could not be completed. Please try again.",
+            "gblinternalerr" : "We can%27t connect to Windows Live Mail right now. Please try again later.",
+            "gblnoconnecterr" : "We can%27t connect to Windows Live Mail right now. Please make sure that you%27re connected to the Internet and try again",
+            "browserjserr" : "Windows Live Mail was not able to complete this request. Microsoft may contact you about any issues you report.",
+            "unabletoreporterr" : "We are unable to report this error to Microsoft.",
+            "contactsaddedsuccesfully" : "Your contacts have been added.",
+            "spellingoptionsdisplaytext_on": "Spell check on",
+            "spellingoptionsdisplaytext_off": "Spell check off",
+            "hiponcomposeinfomessage":"To continue using Windows Live Mail%2c follow the instructions below. You%27ll see this message occasionally as part of an effort to prevent junk e-mail.",
+            "hiponsendinfomessage":"Before you can send this message%2c you must pass a random check to confirm that your account is valid.  This helps us prevent automated programs from sending junk e-mail.",
+            "voicemail_isenabled" : "false",
+            "useremail" : "fsilva_armas@hotmail.com"
+	        
+				, "wmplayer_pollingInt" : "100",
+				"wmplayer_loading" : "Loading",
+				"wmplayer_play" : "Play",
+				"wmplayer_pause" : "Pause",
+				"wmplayer_stop" : "Stop",
+				"wmplayer_seek" : "Play Progress",
+				"wmplayer_volume" : "Volume Level",
+				"wmplayer_mute" : "Mute",
+				"wmplayer_error" : "Error playing audio file.",
+				"wmplayer_errorWMPNotInstalled" : "Install Windows Media Player to listen to audio attachments directly in your email.",
+				"wmplayer_errorWMPInstallUrl" : "http%3a%2f%2fgo.microsoft.com%2ffwlink%2f%3fLinkId%3d6058",
+				"wmplayer_errorCannotPlay" : "Cannot play the audio file.",
+				"wmplayer_errorCannotOpenUrl" : "Cannot download the audio file."
+			
+        };
+            
+        var g_contactsReadPaneBindingParams = {
+            
+            };
+            
+        var g_hipHtmlContainerBindingParams = { "type" : "HipHtmlContainerBindingParams" };
+        
+                
+        
+        var g_delayedBindingInfos = [ 
+            [ "FireAnt.Menu", "CustomizeLink" ],
+            [ "FireAnt.Menu", "FolderListPane" ],
+            [ "FireAnt.Menu", "NewToolBarCmdExp" ]];
+            
+            
+        var g_immediateBindingInfos = [ 
+            [ "FireAnt.InfoPane", "InfoPane" ],            
+            [ "FireAnt.FolderList", "FolderListPane", g_folderListBindingParams ],
+            [ "FireAnt.ResizeSplitter", "ToolsColumnResizeSplitter" ],
+            [ "FireAnt.ResizeSplitter", "MessagListPaneRightResizeSplitter" ],
+            [ "FireAnt.ResizeSplitter", "MessageListPaneBottomResizeSplitter" ],
+            [ "Controller", "", g_controllerBindingParams ]];
+
+	
+	
+            var g_delayedSources = [
+                "http://gfx6.mail.live.com/mail/11.09.0000.0123/Common.js",
+                "http://gfx7.mail.live.com/mail/11.09.0000.0123/Inbox.js",
+                
+                g_editMessagePaneBindingParams.scriptfilebaseurl + "MSNPlatform/" + g_editMessagePaneBindingParams.rte,
+                g_editMessagePaneBindingParams.scriptfilebaseurl + "MSNPlatform/" + g_editMessagePaneBindingParams.languagecode + "/MSNEditStrings.js",
+                "http://gfx6.mail.live.com/mail/11.09.0000.0123/EditMessage.js",
+                "http://gfx7.mail.live.com/mail/11.09.0000.0123/contacts.js"
+                ];
+
+            var g_delayedCss = [
+                "http://gfx8.mail.live.com/mail/11.09.0000.0123/Common.css",
+                "http://gfx8.mail.live.com/mail/11.09.0000.0123/Inbox.css",
+            
+				"http://gfx8.mail.live.com/mail/11.09.0000.0123/WMPlayer.css",
+            
+                "http://gfx8.mail.live.com/mail/11.09.0000.0123/hip.css",
+                "http://gfx8.mail.live.com/mail/11.09.0000.0123/EditMessage.css",
+                g_editMessagePaneBindingParams.scriptfilebaseurl + "msnedit_static.css",
+                "http://gfx8.mail.live.com/mail/11.09.0000.0123/Contacts.css"
+                ];
+                
+		
+		
+            var g_documentLoaded = true;
+            var g_runtimeInitialized = false;
+            
+            try
+            {
+                window.parent.frames[0].window.onApplicationMainLoaded();
+            }
+            catch(ex)
+            {
+                window.top.location.href = "/mail/mail.aspx";
+            }
+	</script>
+	</body>
+</html>

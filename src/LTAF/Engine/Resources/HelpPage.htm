@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2>
+		Lightweight Test Automation Framework for ASP.NET
+	</h2>
+	<h3>
+		What is the Lightweight Test Automation Framework for ASP.NET?
+	</h3>
+	The Lightweight Test Automation Framework for ASP.NET was developed and is used
+	by the <a href="http://weblogs.asp.net/asptest" class="externalLink">ASP.NET QA Team<span
+		class="externalLinkIcon"></span></a> to automate regression tests for the product.
+	It is designed to run within an ASP.NET application.<br />
+	<br />
+	Tests can be written in any .NET Framework language. They use an API to manipulate
+	and verify the DOM of the browser. This framework supports running tests in Microsoft
+	Internet Explorer, Mozilla Firefox, Apple Safari, and Opera.<br />
+	<br />
+	Note that even though the Lightweight Test Automation Framework for ASP.NET can
+	be used to automate testing for any general-purpose Web application, its design
+	was driven by the needs of the QA Team to automate ASP.NET regression tests.<br />
+	<h3>
+		How do I use the samples?
+	</h3>
+	1. Download the sample from the Web site and then open it in Visual Studio 2008.
+	The Web site contains a small application and tests to automate it. The following
+	illustration shows the Web site structure.<br />
+	<br />
+	<img src="http://i3.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=aspnet&amp;DownloadId=58284"
+		alt="WebStructure.gif" /><br />
+	<br />
+	2. Navigate to Home.aspx to interact with the Web site. To log in, use the user
+	name ValidUser and use any string for the password. The page contains a GridView
+	control that lets the user edit, delete, and insert data about school classes and
+	grades. The following illustration shows a screen shot of the sample application.<br />
+	<br />
+	<img src="http://i3.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=aspnet&amp;DownloadId=58282"
+		alt="SampleApp.gif" /><br />
+	<br />
+	3. Navigate to \test\Default.aspx. This loads the testing UI, shown in the following
+	illustration:
+	<br />
+	<br />
+	<img src="http://i3.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=aspnet&amp;DownloadId=58283"
+		alt="TestingUI.gif" /><br />
+	<br />
+	4. Select tests from the tree view and then click Run Tests. The tests will run
+	and display their progress in the right-hand frame.<br />
+	5. To examine the test code, browse to the App_Code\Tests folder, and then open
+	any file to inspect the test source code.<br />
+	<h3>
+		How do I debug test errors?
+	</h3>
+	When a test fails, it is marked in red in the test tree. To examine the log, click
+	the test name. The log information is displayed as shown in the following illustration:<br />
+	<br />
+	<img src="http://i3.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=aspnet&amp;DownloadId=58281"
+		alt="Debug.gif" />
+	<br />
+	<br />
+	The log contains the stack trace of the test and the DOM that was captured by the
+	Lightweight Test Automation Framework at the moment of failure.
+	<br />
+	You can also have the test framework write a simple log to disk. To do so, select
+	the Write Log to Disk check box before you run the tests. Note that this feature
+	requires write access to the Web site’s root folder.<br />
+	<h3>
+		How do I use the Lightweight Test Automation Framework for ASP.NET with my own Web
+		site?
+	</h3>
+	To use the test framework in your Web site, follow these steps.<br />
+	<br />
+	1. Copy LTAF.dll into the Bin folder of your Web site. If
+	you are testing a Web application, add the DLL as a reference to the project.<br />
+	<br />
+	2. Copy Default.aspx and DriverPage.aspx into a folder in the Web site.
+	<br />
+	<br />
+	By convention, the ASP.NET QA team uses the Test folder, but you can use any folder
+	that you want. These are the pages that are required in order to run the tests.
+	If you are testing a Web site project, put tests in the App_Code folder. If you
+	are testing a Web application project, you can put tests in any folder.<br />
+	<h3>
+		How do I filter the test tree?
+	</h3>
+	The automation framework accepts the query-string values that are useful for filtering
+	and running tests. You add these arguments when you request a page in the browser
+	in order to start a test.
+	<br />
+	<br />
+	You can use the following query-string variables:<br />
+	<br />
+	<ul>
+		<li><b>Tag=&lt;tag_identifier&gt;</b></li><ul>
+			<li>Selects all tests that are marked with the WebTestTagAttribute and that have the
+				specified identifier. For example, to have the framework automatically select a
+				method that is marked with the [WebTestTag(&quot;DataScenarios&quot;)] attribute,
+				you can browse to the following URL:</li><li><i>http://server/site/test/Default.aspx?tag=DataScenarios</i></li><li>
+					By default, the names of all classes that are marked with the WebTestClassAttribute
+					and the name of all methods that are marked with the WebTestMethodAttribute are
+					already identifiers. </li>
+			<li>You can specify multiple tag identifiers by concatenating them with the “@” symbol,
+				as shown in the following example:</li><li><i>http://server/site/test/Default.aspx?tag=Pri0@MyTestMethod</i></li><li>
+					This example shows how to automatically select all tests that have the [WebTestTag(&quot;Pri0&quot;)]
+					attribute and additionally to select the test method named “MyTestMethod”.</li>
+		</ul>
+		<li><b>Filter=[true|false]</b></li><ul>
+			<li>Passing true causes the Lightweight Test Automation Framework to remove all unselected
+				tests from the test tree.</li>
+		</ul>
+		<li><b>Run=[true|false]</b></li><ul>
+			<li>Passing true causes the Lightweight Test Automation Framework to start running the
+				selected tests on load.</li>
+		</ul>
+	</ul>
+	<h3>
+		Additional Resources
+	</h3>
+	For more information, see the following resources:<br />
+	<ul>
+		<li>The <a href="http://forums.asp.net/1193.aspx" class="externalLink">Lightweight Test
+			Automation Framework Forum<span class="externalLinkIcon"></span></a>, where you
+			can post feedback and questions.</li><li>The <a href="http://weblogs.asp.net/asptest"
+				class="externalLink">ASP.NET QA Team<span class="externalLinkIcon"></span></a> blog,
+				where you can find additional samples. </li>
+		<li>The <a href="http://aspnet.codeplex.com/Wiki/View.aspx?title=Lightweight%20Test%20Automation%20Framework%20Road%20Map&amp;referringTitle=Lightweight%20Test%20Automation%20Framework%20release%20notes">
+			Lightweight Test Automation Framework Road Map</a>. This document describes upcoming
+			features. </li>
+	</ul>
+	</div></span> </div>
+</body>
+</html>

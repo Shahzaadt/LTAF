@@ -1,0 +1,190 @@
+<html xmlns:Web xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"
+	 class="liveApp la_en lo_us">
+	<head>
+		<title>Windows Live</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link title="Live Search" type="application/opensearchdescription+xml"
+			 rel="search" href="http://www.live.com/live/search/search.xml" />
+		<script language="JavaScript">
+			if(location.href.indexOf("#")!=-1&&location.href.indexOf("#")<location.href.lastIndexOf("?")){location.replace(location.href.substring(0,location.href.indexOf("#"))+location.href.substring(location.href.indexOf("#")).replace(/\?/,"&"));}
+			else if(location.hash!=""&&location.hash!="#"){var url=location.href.substring(0,location.href.indexOf(location.hash));location.replace(url+(url.indexOf('?')==-1?'?':'&')+location.hash.substring(1));}
+			var Timers = new function() {this.next = function(){};}
+		</script>
+		<link rel="stylesheet" type="text/css" media="screen, print, projection, tv"
+			 href="live/1.100.7.386/css/searchlanding.css" />
+	</head>
+	<body>
+		<!--First Run -->
+		<script>
+			
+			if(null==window["Live"]) window["Live"] = new Object();
+			if (Live.Themes == null) Live.Themes = new Object();
+			
+			Live.Themes.ThemeUrl = "http://shared.live.com/IdgrgrOt32xgbBZvrFXplw/Base/";
+			Live.Header = {Settings:{TemplateUrl:'http://shared.live.com/khh2fjY!TST7mpnZLyDy7TO!4mcsTqaS/'}};
+			
+			if (Live.FakeJewelData == null) Live.FakeJewelData = new Object();
+			Live.FakeJewelData.ImgBaseUrl = "http://stc.live.com/live/1.100.7.386/img/";
+			Live.FakeJewelData.Market = "en-us";
+			
+			function flag_pl(){pl = true;window.detachEvent('onload', flag_pl);}
+			var pl = false;
+			if (window.attachEvent){window.attachEvent('onload', flag_pl);}else {pl = true;}
+			var jmenu = null;
+			var jhover = false;
+			function attach_menu()
+			{
+			if (!pl){setTimeout(attach_menu, 50);return;}
+			if (!jmenu)
+			{
+			jmenu = document.createElement("script");
+			jmenu.src = "live/1.100.7.386/js/JewelMenu.js";
+			document.body.appendChild(jmenu);
+			}
+			}
+		</script>
+		<div id="header" onmouseover="attach_menu();">
+			<div class="inside">
+				<div class="BrandSection" id="brand">
+					<a class="jewel" href="#" onclick="return false;" onmouseover="jhover=true;"
+						 onmouseout="jhover=false;">
+						<span style="display:none;">More services</span>
+						<img src="live/1.100.7.386/img/wl_jewel.gif">
+					</a>
+					<span class="Product">
+						 Windows Live
+						<span class="tm">&trade;</span>
+					</span>
+					<div id="headerMarket"></div>
+					<br/>
+					<div style="position: absolute;" id="mainmenu" class="Menu"></div>
+				</div>
+				<div id="ppToolBar">
+					<a id="logoTag" href="http://login.live.com/login.srf?wa=wsignin1.0&rpsnv=10&ct=1171331763&rver=4.0.1532.0&wp=LBI&wreply=http:%2F%2Fwww.live.com%2Flogin.aspx&lc=1033&loref=www.live.com&id=72567">
+						<span id="signIn">Sign in</span>
+						<img id="signInImg" src="live/1.100.7.386/img/pp.gif" height="22px" width="22px" />
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</div>
+		<img class="cgif" width="1" height="1" alt="" src="http://c.live.com/c.gif?DI=6734&PI=93278&PS=93588&TP=http%3a%2f%2fwww.live.com%2fDefault.aspx&RF=" />
+		<div id="toolbar">
+			<a href="settings.aspx">Options</a>
+			&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a id="personalizedHomeLink" href="getstarted.aspx">
+				<img id="personalizedHomeIcon" src="live/1.100.7.385/img/personalizedHome.gif"></img>
+				<span id="personalizedHomeLinkText">Personalize page</span>
+			</a>
+		</div>
+		<div id="search">
+			<ul>
+				<li>
+					<span id="searchLandingTitle">Live Search</span>
+					<ul class="details">
+						<li>
+							<div id="searchBar">
+								<form id="searchform" name="searchform" action="http://search.live.com/results.aspx"
+									 onsubmit="return onSearch(event);">
+									<label for="q">Type search term</label>
+									<label for="go"> Search </label>
+									<span class="sc">
+										<input class="q" id="q" name="q" value="">
+										<input style="border: 1px solid rgb(170, 170, 170);" name="mkt" value="en-us" type="hidden">
+										<input name="FORM" value="LVSP" type="hidden">
+										<input name="go" id="go" class="go" src="live/1.100.7.386/img/search_go.gif"
+											 value="Search" align="middle" type="image">
+									</span>
+								</form>
+							</div>
+							<script>
+								document.getElementById("q").focus();
+							</script>
+						</li>
+						<li>
+							<ul id="scopes" class="scopes">
+								<li class="selected" id="web">
+									<a href="./?scope=web" onclick="return selectScope('web');">Web</a>
+								</li>
+								<li id="images">
+									<a href="./?scope=images" onclick="return selectScope('images');">Images</a>
+								</li>
+								<li id="news">
+									<a href="./?scope=news" onclick="return selectScope('news');">News</a>
+								</li>
+								<li id="maps">
+									<a href="./?scope=maps" onclick="return selectScope('maps');">Maps</a>
+								</li>
+								<li id="classifieds">
+									<a href="" onclick="return selectScope('classifieds');">Classifieds</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="msg"></li>
+			</ul>
+		</div>
+		<script language="JavaScript">
+			var searchform = document.getElementById("searchform");
+			var searchbox = document.getElementById("q");
+			var _scope="web";
+			var _scopes={web:'http://search.live.com/results.aspx',news:'http://search.live.com/news/results.aspx',images:'http://search.live.com/images/results.aspx',local:'http://maps.live.com/',maps:'http://maps.live.com/',qna:'http://qna.live.com/search.aspx',classifieds:'http://expo.live.com/ListingSearch.aspx'};
+			
+			function onSearch(ev)
+			{
+			searchform.action=_scopes[_scope];
+			return true;
+			}
+			
+			var scopesEl = document.getElementById("scopes");
+			function selectScope(scope)
+			{
+			_scope=scope;
+			if (scopesEl) for (var i=0; i < scopesEl.childNodes.length; i++) scopesEl.childNodes[i].className = "";
+			var el = document.getElementById(scope);
+			if (null != el) el.className = "selected";
+			searchbox.focus();
+			return false;
+			}
+		</script>
+		<div id="footer" class="footer">
+			<div>
+				<span id="mh" class="accent" style="behavior:url(#default#homepage);visibility:hidden">
+					<a href="#" onClick="this.style.behavior='url(#default#homepage)';hpAction();this.setHomePage('http://www.live.com/');return false;">Make Live.com your homepage</a>
+				</span>
+			</div>
+			<div>
+				<a href="http://g.live.com/0PR_/enus">Privacy</a>
+				| 
+				<a href="http://g.live.com/0TO_/enus">Legal</a>
+				| 
+				<a href="http://feedback.live.com/eform.aspx?productkey=wlsearch&mkt=en-us"
+					 target="_blank">Feedback</a>
+				| 
+				<a href="http://help.live.com/help.aspx?project=wl_searchv1&market=en-us"
+					 target="_blank">Help</a>
+			</div>
+			<div>©2007 Microsoft Corporation</div>
+		</div>
+		<script language="Javascript">
+			function showHp()
+			{
+			if (!mh.isHomePage('http://www.live.com/'))
+			mh.style.visibility = "visible";
+			}
+			if (window.attachEvent)
+			window.attachEvent("onload", showHp);
+			function hpAction()
+			{
+			
+			var i = document.createElement("img");
+			i.height = 1; i.width = 1; i.alt = ""; i.style.visibility = "hidden";
+			document.body.appendChild(i);
+			i.src = "http://switch.atdmt.com/action/WL_Livecom_en_US_make_this_your_homepage_textlink";
+			i = null;
+			
+			}
+		</script>
+	</body>
+</html>

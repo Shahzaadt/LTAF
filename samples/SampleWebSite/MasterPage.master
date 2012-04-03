@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Sample QA Web Site</title>
+    <link rel="Stylesheet" href="styles/reset.css" />    
+    <link rel="Stylesheet" href="styles/default/default.css" />    
+    <asp:ContentPlaceHolder ID="HeaderContentPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+	<div id="header">
+		<a href="#" title="home"><h1>ASP.NET QA Team</h1></a>
+	</div>
+	<form runat="server">
+    	<div id="contentWrapper">
+		<div id="contentTop"></div>
+        <asp:ContentPlaceHolder ID="MenuContentPlaceHolder" runat="server">
+            <asp:LoginView ID="LoginView1" runat="server">
+                <AnonymousTemplate>
+                    <ul id="menu">
+			            <li>
+			                <a id="tab-login" title="Sign In" href="Login.aspx"><span>Sign In</span></a>
+			            </li>
+		            </ul>    
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    <ul id="menu">
+			            <li>
+			                <a id="tab-home" title="Home" href="Home.aspx"><span>Home</span></a>
+			            </li>
+			            <li>
+			                <a id="tab-signout" title="Sign Out" href="Logout.aspx"><span>Sign Out</span></a>
+			            </li>
+		            </ul>
+                </LoggedInTemplate>
+            </asp:LoginView>
+        </asp:ContentPlaceHolder>
+		<div id="content">
+			<div id="papers">
+				<div id="paper">
+					<div id="welcomeMessage">
+					    <asp:LoginView runat="server" ID="LoginView2">
+					        <LoggedInTemplate>
+        						<img src="images/guy.png" alt=""/>			            
+        						<asp:LoginName ID="LoginName1" runat="server" CssClass="Message" FormatString="Welcome back {0}!" />						
+					        </LoggedInTemplate>
+						</asp:LoginView>
+                    </div>
+                    <asp:ContentPlaceHolder ID="PaperContentPlaceHolder" runat="server">
+                    </asp:ContentPlaceHolder>
+				</div>
+			</div>
+		</div>
+		<div id="contentBottom"></div>
+	</div>
+	</form>
+	<div id="footer">
+		<div>
+			&copy 2008 Microsoft<br />
+			<a style="color:Blue; text-decoration:underline;" href="http://weblogs.asp.net/asptest" title="ASP.net QA Team">ASP.net QA Team</a><br />
+			LTAF Sample App
+		</div>
+	</div>
+</body>
+
+</html>

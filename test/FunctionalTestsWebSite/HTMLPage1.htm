@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>HTMLPage1</title>
+    <script type="text/javascript">
+        function DoMouseOver()
+        {
+            document.getElementById("Link1").style.backgroundColor = "green";
+        }
+        
+        function Print(message)
+        {
+            document.getElementById("Messages").innerHTML = message
+        }
+        
+        function MyCustomFunction()
+        {
+            document.getElementById("MyCustomFunctionResult").innerHTML = "Custom Function Invoked";
+        }
+        
+        function Button1_Click()
+        {
+            window.setTimeout("Print('MyCodeMarker');", 2500);
+        }
+        
+    </script>
+</head>
+<body>
+    <span id="Messages"></span>
+    <br />
+    <a id="Link1" href="HTMLPage2.htm" onmouseover="javascript:DoMouseOver();">Go to page 2</a>
+    <br />
+    <a id="Link2" href="javascript:Print('href');">HRef</a>
+    <span id="MyCustomFunctionResult"></span>
+    <input id="Button1" type="button" value="Delay 5 seconds" onclick="javascript:Button1_Click();" />
+    <a href="HTMLPage2.htm">Navigate to Page2</a>    
+</body>
+</html>

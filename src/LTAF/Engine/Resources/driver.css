@@ -1,0 +1,147 @@
+html 
+{
+	height:100%; 
+}
+
+body 
+{ 
+    margin:0 auto;
+    height:100%;
+	
+}
+
+body, p 
+{ 
+    font-family: Verdana, sans serif; 
+    font-size: 11px 
+}
+
+.header
+{
+	position:absolute;  
+	top:0; 
+	height:125px;
+	width:100%;
+	z-index:100;
+	background-color:White;
+}
+
+.titleBar
+{
+	border-bottom: solid 1px #cecece;
+	padding:5px;
+	margin-bottom:10px;
+}
+
+.helpIcon
+{
+	float:right;
+}
+
+.menu
+{
+	border:solid 1px black;
+	width:96%;
+	margin: 10px 2%;
+	padding:0px 0px 5px 0px;
+}
+
+.tests
+{
+	overflow: auto; 
+	position:absolute; 
+	top:125px;
+	bottom:250px; 
+	background-color: LightGray;
+	width:96%;
+	margin:10px 2%;
+	min-height: 100px;
+	border:1px solid Black;
+	z-index:50;
+}
+
+.testsNoConsole
+{
+	overflow: auto; 
+	position:absolute; 
+	top:125px;
+	bottom:1px; 
+	background-color: LightGray;
+	width:96%;
+	margin:10px 2%;
+	min-height: 100px;
+	border:1px solid Black;
+	z-index:50;
+}
+
+.testPassed 
+{ 
+	font-weight: bold; 
+	color: Green;
+	padding-right:20px; 
+	background:url('<%=WebResource("LTAF.Engine.Resources.testPassed.gif")%>') no-repeat right;
+}
+		
+.testFailed 
+{ 
+	font-weight: bolder; 
+	color: Red; 
+	font-size: large !important;
+	padding-right:20px; 
+	background:url('<%=WebResource("LTAF.Engine.Resources.testFailed.gif")%>') no-repeat right;
+}
+
+
+.footer
+{
+	position:absolute;
+	bottom:0;  
+	height:250px;
+	width:96%;
+	margin:0px 2%;
+	z-index:0;
+}
+
+.debugConsole
+{
+	height:200px;
+	border:solid 1px black;
+	background-color: #eee;
+	overflow:auto;
+	padding: 5px;
+}
+
+.LogRun
+{
+	padding-top:5px; 
+	font-weight:bold;
+	font-size:large;
+}
+
+.LogTestcase
+{
+	padding-left:10px; 
+	font-weight:bold;
+}
+
+.LogCommand
+{
+	margin-left:10px; 
+	padding-left:10px; 
+	border-left:solid 1px black;	
+}
+
+.LogTrace
+{
+    margin-left:10px; 
+	padding-left:20px; 
+	border-left:solid 1px black;	
+	color:Blue;
+}
+
+.LogDetail
+{
+	margin-left:10px; 
+	padding-left:15px; 
+	border-left:solid 1px black;
+}

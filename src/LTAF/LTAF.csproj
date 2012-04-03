@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BA956AB4-78FA-47CE-9861-95ECA91103BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LTAF</RootNamespace>
+    <AssemblyOriginatorKeyFile>LTAF.snk</AssemblyOriginatorKeyFile>
+    <AssemblyName>LTAF</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\LTAF.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\Microsoft.Web.Testing.Lightweight.XML</DocumentationFile>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationPathFinder.cs" />
+    <Compile Include="AspNetPageService.cs" />
+    <Compile Include="Assert.cs" />
+    <Compile Include="BrowserCommandExecutor.cs" />
+    <Compile Include="BrowserCommandExecutorFactory.cs" />
+    <Compile Include="Emulators\BrowserEmulator.cs" />
+    <Compile Include="BrowserVersions.cs" />
+    <Compile Include="BrowserUtility.cs" />
+    <Compile Include="Emulators\BrowserCommandEventArgs.cs" />
+    <Compile Include="Emulators\EmulatedBrowserCommandExecutor.cs" />
+    <Compile Include="Emulators\BrowserEmulatorLog.cs" />
+    <Compile Include="Emulators\EmulatedBrowserCommandExecutorFactory.cs" />
+    <Compile Include="Emulators\HttpWebRequestExtension.cs" />
+    <Compile Include="Emulators\WebRequestor.cs" />
+    <Compile Include="Emulators\IBrowserEmulatorLog.cs" />
+    <Compile Include="Emulators\RequestSendingEventArgs.cs" />
+    <Compile Include="Emulators\ResponseReceivedEventArgs.cs" />
+    <Compile Include="Emulators\IWebRequestor.cs" />
+    <Compile Include="Engine\BrowserCommandTarget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Engine\BrowserInfo.cs" />
+    <Compile Include="Engine\BrowserCommand.cs" />
+    <Compile Include="Engine\CommandManager.cs" />
+    <Compile Include="Engine\SystemWebExtensionsWrapper.cs" />
+    <Compile Include="Engine\QueryStringParameters.cs" />
+    <Compile Include="Engine\Testcase.cs" />
+    <Compile Include="Engine\TestcaseExecutionEventArgs.cs" />
+    <Compile Include="Engine\TestcaseExecutor.cs" />
+    <Compile Include="Engine\BrowserCommandHandler.cs" />
+    <Compile Include="Engine\TestcaseExecutorTaskInfo.cs" />
+    <Compile Include="Engine\TestcaseLogger.cs" />
+    <Compile Include="Engine\TestCaseManager.cs" />
+    <Compile Include="Engine\TestRunFinishedEventArgs.cs" />
+    <Compile Include="Engine\WebTestTagExpressionEvaluator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FileSystem.cs" />
+    <Compile Include="IApplicationPathFinder.cs" />
+    <Compile Include="IAspNetPageService.cs" />
+    <Compile Include="IAssertResultHandler.cs" />
+    <Compile Include="IBrowserCommandExecutor.cs" />
+    <Compile Include="IBrowserCommandExecutorFactory.cs" />
+    <Compile Include="IFileSystem.cs" />
+    <Compile Include="IWebApplication.cs" />
+    <Compile Include="IWebResourceReader.cs" />
+    <Compile Include="ServiceLocator.cs" />
+    <Compile Include="TagParser\Attribute.cs" />
+    <Compile Include="TagParser\AttributeCollection.cs" />
+    <Compile Include="TagParser\Comment.cs" />
+    <Compile Include="TagParser\DocumentType.cs" />
+    <Compile Include="TagParser\Element.cs" />
+    <Compile Include="TagParser\ElementCloseTag.cs" />
+    <Compile Include="TagParser\InvalidNode.cs" />
+    <Compile Include="TagParser\MarkupFormatter.cs" />
+    <Compile Include="TagParser\Node.cs" />
+    <Compile Include="TagParser\NodeCollection.cs" />
+    <Compile Include="TagParser\NodeContainer.cs" />
+    <Compile Include="TagParser\NodeReader.cs" />
+    <Compile Include="TagParser\NodeType.cs" />
+    <Compile Include="TagParser\Parser.cs" />
+    <Compile Include="TagParser\ProcessingInstruction.cs" />
+    <Compile Include="TagParser\TagDocument.cs" />
+    <Compile Include="TagParser\TextNode.cs" />
+    <Compile Include="UI\CommandParameters.cs" />
+    <Compile Include="UI\HtmlOptionElementAttributeReader.cs" />
+    <Compile Include="UI\HtmlOptionElement.cs" />
+    <Compile Include="UI\PostDataCollection.cs" />
+    <Compile Include="UI\HtmlFormElement.cs" />
+    <Compile Include="UI\HtmlAttributeFindParams.cs" />
+    <Compile Include="UI\HtmlAttributeFindParamsCollection.cs" />
+    <Compile Include="UI\HtmlElementFactory.cs" />
+    <Compile Include="UI\HtmlImageElement.cs" />
+    <Compile Include="UI\HtmlImageElementAttributeReader.cs" />
+    <Compile Include="UI\HtmlKeyEvent.cs" />
+    <Compile Include="UI\HtmlPage.cs" />
+    <Compile Include="UI\HtmlSelectElementAttributeReader.cs" />
+    <Compile Include="UI\HtmlInputElementAttributeReader.cs" />
+    <Compile Include="UI\HtmlAnchorElementAttributeReader.cs" />
+    <Compile Include="UI\HtmlElementAttributeReader.cs" />
+    <Compile Include="UI\ElementNotFoundException.cs" />
+    <Compile Include="UI\HtmlAnchorElement.cs" />
+    <Compile Include="UI\HtmlAttributeDictionary.cs" />
+    <Compile Include="UI\HtmlElementBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlEventName.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlInputElement.cs" />
+    <Compile Include="UI\HtmlInputElementType.cs" />
+    <Compile Include="UI\HtmlMouseEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlSelectElement.cs" />
+    <Compile Include="UI\HtmlStyle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlStyleEnums.cs" />
+    <Compile Include="UI\HtmlTableElement.cs" />
+    <Compile Include="UI\HtmlTableRowElement.cs" />
+    <Compile Include="UI\HtmlElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlTextAreaElement.cs" />
+    <Compile Include="UI\MatchMethod.cs" />
+    <Compile Include="UI\NavigationVerification.cs" />
+    <Compile Include="WebApplication.cs" />
+    <Compile Include="WebResourceReader.cs" />
+    <Compile Include="WebTestConsole.cs" />
+    <Compile Include="WebTestException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Engine\TestDriverPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\HtmlElementCollection.cs" />
+    <Compile Include="UI\HtmlElementFindParams.cs" />
+    <Compile Include="WebTestFailureTagAttribute.cs" />
+    <Compile Include="WebTestLogDetail.cs" />
+    <Compile Include="WebTestMethodAttribute.cs" />
+    <Compile Include="WebTestClassAttribute.cs" />
+    <Compile Include="WebTestTagAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Engine\Resources\TestcaseExecutor.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Engine\Resources\driver.css" />
+    <EmbeddedResource Include="Engine\Resources\spinner.gif" />
+    <EmbeddedResource Include="Engine\Resources\StartUpPage.htm" />
+    <EmbeddedResource Include="Engine\Resources\helpicon.gif" />
+    <EmbeddedResource Include="Engine\Resources\HelpPage.htm" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Engine\Resources\LogSuccess.htm" />
+    <EmbeddedResource Include="Engine\Resources\LogErrorFrameSet.htm" />
+    <EmbeddedResource Include="Engine\Resources\LogErrorStackTrace.htm" />
+    <Content Include="Engine\Resources\ScriptFiles\BrowserFrame.js" />
+    <Content Include="Engine\Resources\ScriptFiles\BrowserWindow.js" />
+    <Content Include="Engine\Resources\ScriptFiles\CommandHandlers.js" />
+    <Content Include="Engine\Resources\ScriptFiles\TestExecutor.js" />
+    <Content Include="Engine\Resources\ScriptFiles\DomSupport.js" />
+    <Content Include="Engine\Resources\ScriptFiles\TestcaseTreeView.js" />
+    <Content Include="Engine\Resources\ScriptFiles\TestExecutorBase.js" />
+    <EmbeddedResource Include="Engine\Resources\testFailed.gif" />
+    <EmbeddedResource Include="Engine\Resources\testPassed.gif" />
+    <Content Include="SupportFiles\Default.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="SupportFiles\DriverPage.aspx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LTAF.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <UsingTask TaskName="ConcatenateScriptsTask" AssemblyFile="..\..\lib\LTAF.BuildTasks.dll" />
+  <Target Name="BeforeBuild">
+    <ConcatenateScriptsTask PathToScriptFiles="Engine\Resources\ScriptFiles" PathToOutputFile="Engine\Resources\TestcaseExecutor.js" ScriptFiles="TestExecutorBase.js TestExecutor.js BrowserFrame.js BrowserWindow.js CommandHandlers.js DomSupport.js TestcaseTreeView.js" />
+  </Target>
+</Project>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Popup Page</title>
+    <script type="text/javascript">
+        function OnClick_ChangeSpan()
+        {
+            document.getElementById("TheSpan").innerHTML = "Button has been clicked";
+        }
+    </script>
+</head>
+<body>
+    <h1>This is the top frame</h1>
+    <span id="TheSpan"></span>
+    <br />
+    <input id="ChangeSpanButton" type="button" value="Change Span" onclick="javascript:OnClick_ChangeSpan();" />
+    <br />
+    <br />
+    <input id="OpenWindow" type="button" value="Open New Window" onclick="javascript:window.open('PopupPage.htm', 'MyPopup');" />
+  
+</body>
