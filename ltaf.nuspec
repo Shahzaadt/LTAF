@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>ltaf</id>
+    <version>2.0.0</version>
+    <authors>antonpis</authors>
+    <owners>antonpis</owners>
+    <licenseUrl>http://ltaf.codeplex.com/license</licenseUrl>
+    <projectUrl>http://ltaf.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Lightweight Test Automation Framework (LTAF) for ASP.NET runtime dependencies</description>
+    <releaseNotes>Release of version LTAF 2.0.</releaseNotes>
+    <copyright>Copyright 2012 Outercurve Foundation</copyright>
+    <tags>ASP.NET MVC WebPages Test Automation Framework Testcase Testing WebSite</tags>
+  </metadata>
+  
+  <files>
+	  <file src="src\LTAF\SupportFiles\*.*" target="content\Test" />
+	  <file src="src\LTAF\bin\Debug\ltaf.dll" target="lib\Net40\ltaf.dll" />
+	  <file src="src\LTAF\bin\Debug\ltaf.pdb" target="lib\Net40\ltaf.pdb" />  
+  </files>
+</package>

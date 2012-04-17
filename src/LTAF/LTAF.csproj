@@ -267,4 +267,7 @@
   <Target Name="BeforeBuild">
     <ConcatenateScriptsTask PathToScriptFiles="Engine\Resources\ScriptFiles" PathToOutputFile="Engine\Resources\TestcaseExecutor.js" ScriptFiles="TestExecutorBase.js TestExecutor.js BrowserFrame.js BrowserWindow.js CommandHandlers.js DomSupport.js TestcaseTreeView.js" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)tools\NuGet.exe" pack "$(SolutionDir)ltaf.nuspec"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
