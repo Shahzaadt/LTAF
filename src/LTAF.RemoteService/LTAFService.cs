@@ -147,23 +147,23 @@ namespace LTAF.RemoteService
             Assembly currentAssembly = Assembly.GetExecutingAssembly();
             File.WriteAllText(
                 Path.Combine(physicalPath, "driver.css"),
-                GetResourceContent(currentAssembly, "LTAFweight.Support.Resources.driver.css"));
+                GetResourceContent(currentAssembly, "LTAF.Support.Resources.driver.css"));
             File.WriteAllText(
                 Path.Combine(physicalPath, "DriverPage.aspx"),
-                GetResourceContent(currentAssembly, "LTAFweight.Support.Resources.DriverPage.aspx"));
+                GetResourceContent(currentAssembly, "LTAF.Support.Resources.DriverPage.aspx"));
             File.WriteAllText(
                 Path.Combine(physicalPath, "FrameSet.aspx"),
-                GetResourceContent(currentAssembly, "LTAFweight.Support.Resources.FrameSet.aspx"));
+                GetResourceContent(currentAssembly, "LTAF.Support.Resources.FrameSet.aspx"));
             File.WriteAllText(
                 Path.Combine(physicalPath, "WebService.asmx"),
-                GetResourceContent(currentAssembly, "LTAFweight.Support.Resources.WebService.asmx"));
+                GetResourceContent(currentAssembly, "LTAF.Support.Resources.WebService.asmx"));
             File.WriteAllText(
                 Path.Combine(physicalPath, "web.config"),
-                GetResourceContent(currentAssembly, "LTAFweight.Support.Resources.web.config"));
+                GetResourceContent(currentAssembly, "LTAF.Support.Resources.web.config"));
 
             StringBuilder scriptBuilder = new StringBuilder();
             scriptBuilder.AppendLine(GetResourceContent(ltafAssembly, "LTAF.Engine.Resources.TestcaseExecutor.js"));
-            scriptBuilder.AppendLine(GetResourceContent(currentAssembly, "LTAFweight.Support.Resources.RemoteTestcaseExecutor.js"));
+            scriptBuilder.AppendLine(GetResourceContent(currentAssembly, "LTAF.Support.Resources.RemoteTestcaseExecutor.js"));
             File.WriteAllText(
                 Path.Combine(physicalPath, "ScriptLibrary.js"),
                 scriptBuilder.ToString());

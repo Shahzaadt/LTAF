@@ -256,7 +256,6 @@
     </Content>
     <Content Include="SupportFiles\DriverPage.aspx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

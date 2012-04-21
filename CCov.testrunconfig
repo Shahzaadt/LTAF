@@ -3,7 +3,7 @@
   <Description>This is a default test run configuration for a local test run.</Description>
   <CodeCoverage enabled="true" keyFile="D:\Nexus\NexusCodePlex\include\LTAF.snk">
     <Regular>
-      <CodeCoverageItem binaryFile="Framework\bin\Debug\LTAFweight.dll" pdbFile="Framework\bin\Debug\LTAFweight.pdb" instrumentInPlace="true" />
+      <CodeCoverageItem binaryFile="Framework\bin\Debug\LTAF.dll" pdbFile="Framework\bin\Debug\LTAF.pdb" instrumentInPlace="true" />
     </Regular>
   </CodeCoverage>
   <TestTypeSpecific>

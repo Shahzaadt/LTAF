@@ -17,7 +17,7 @@
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server" ID="DriverPageScriptManager" EnablePageMethods="true" EnablePartialRendering="true">
             <Scripts>
-                <asp:ScriptReference Name="LTAF.Engine.Resources.TestcaseExecutor.js" Assembly="LTAFweight" />
+                <asp:ScriptReference Name="LTAF.Engine.Resources.TestcaseExecutor.js" Assembly="LTAF" />
             </Scripts>
         </asp:ScriptManager>
         <asp:UpdatePanel runat="server" ID="DriverPageUpdatePanel">

@@ -1,6 +1,6 @@
 /// --------------------------------------
 /// Script Concatenated by a Tool
-/// Time Stamp:4/3/2012 1:37:57 AM
+/// Time Stamp:4/20/2012 11:45:14 PM
 /// --------------------------------------
 
 Type.registerNamespace('LTAF');
@@ -1736,8 +1736,7 @@ LTAF.BrowserWindow.registerClass('LTAF.BrowserWindow');
 			document.getElementById("failedTests").disabled = false;
         }
         
-    }//depot/test/Nexus/Working/LTAFweight/Framework/Engine/Resources/ScriptFiles/DomSupport.js#18 - edit change 3322374 (text)
-// static dom support
+    }// static dom support
 var DomSupport = null;
 
 /// <summary>

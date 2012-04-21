@@ -1,4 +1,3 @@
-//depot/test/Nexus/Working/LTAFweight/Framework/Engine/Resources/ScriptFiles/DomSupport.js#18 - edit change 3322374 (text)
 // static dom support
 var DomSupport = null;
 
