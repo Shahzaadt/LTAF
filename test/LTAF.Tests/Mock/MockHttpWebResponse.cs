@@ -42,8 +42,7 @@ namespace LTAF.UnitTests
         {
             this._responseUri = new Uri(url);
             this._body = body;
-
-            (((HttpWebResponse)(WebResponse)this)).Cookies = cookies;
+            this.Cookies = cookies;
         }
 
         #pragma warning restore 0618

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LTAF.Infrastructure</id>
+    <version>1.0</version>
+    <authors>antonpis</authors>
+    <owners>antonpis</owners>
+    <licenseUrl>http://ltaf.codeplex.com/license</licenseUrl>
+    <projectUrl>http://ltaf.codeplex.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Lightweight helper APIs simplifying IIS,IISExpress and Nuget packages management in tests</description>
+    <releaseNotes>Release of version LTAF.Infrastructure 1.0.</releaseNotes>
+    <copyright>Copyright 2012 Outercurve Foundation</copyright>
+    <tags>ASP.NET MVC WebPages Test Automation Framework Testcase Testing WebSite IIS IISExpress Nuget package</tags>
+    <dependencies>
+		<dependency id="Microsoft.Web.Administration" version="7.0.0.0" />
+		<dependency id="NuGet.Core" version="2.1.0" />		
+    </dependencies>	
+  </metadata>
+  
+  <files>
+	  <file src="src\LTAF.Infrastructure\bin\Debug\LTAF.Infrastructure.dll" target="lib\Net40\LTAF.Infrastructure.dll" />
+  </files>
+</package>
