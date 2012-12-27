@@ -69,12 +69,13 @@ namespace LTAF.Infrastructure
             Start();
         }
 
-        protected override void DisposeWebServer()
+        protected override void DisposeWebServer(bool disposing)
         {
             if (IsRunning)
             {
-                Stop();
-            }
+                 // dispose managed resources
+                 Stop();
+            }           
         }
 
         public override void Start()

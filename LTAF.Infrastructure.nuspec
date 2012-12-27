@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>LTAF.Infrastructure</id>
-    <version>1.0</version>
+    <version>1.0.4</version>
     <authors>antonpis</authors>
     <owners>antonpis</owners>
     <licenseUrl>http://ltaf.codeplex.com/license</licenseUrl>

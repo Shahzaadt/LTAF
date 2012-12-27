@@ -41,13 +41,13 @@ namespace LTAF.Infrastructure.Abstractions
                 DirectoryCreate(destinationPath);
             }
 
-            foreach (string file in DirectoryGetFiles(sourcePath, "*.*", SearchOption.AllDirectories))
+            foreach (string file in DirectoryGetFiles(sourcePath, "*.*", SearchOption.TopDirectoryOnly))
             {
                 string fileName = Path.GetFileName(file);
                 FileCopy(file, Path.Combine(destinationPath, fileName), true);
             }
 
-            foreach (string subDir in DirectoryGetSubDirs(sourcePath, "*.*", SearchOption.AllDirectories))
+            foreach (string subDir in DirectoryGetSubDirs(sourcePath, "*.*", SearchOption.TopDirectoryOnly))
             {
                 string subDirName = Path.GetFileName(subDir);
                 DirectoryCopy(subDir, Path.Combine(destinationPath, subDirName));

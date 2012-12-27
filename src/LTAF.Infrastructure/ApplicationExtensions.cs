@@ -18,6 +18,11 @@ namespace LTAF.Infrastructure
 
         }
 
+        public static void Deploy(this Application application, string relativeFilePath, string fileContents)
+        {
+            Deploy(application, relativeFilePath, fileContents, Dependencies.FileSystem);
+        }
+
         internal static void Deploy(Application application, string sourceDir, IFileSystem fileSystem)
         {
             if (!fileSystem.DirectoryExists(sourceDir))
@@ -38,5 +43,18 @@ namespace LTAF.Infrastructure
 
             fileSystem.DirectoryCopy(sourceDir, targetDir);
         }
+
+        internal static void Deploy(Application application, string relativeFilePath, string fileContents, IFileSystem fileSystem)
+        {
+            if (application.VirtualDirectories.Count <= 0)
+            {
+                throw new Exception(string.Format("Application '{0}' does not have a virtual directory.", application.Path));
+            }
+
+            string targetFilePath = Path.Combine(application.VirtualDirectories[0].PhysicalPath, relativeFilePath);
+
+            fileSystem.FileWrite(targetFilePath, fileContents);
+        }
+
     }
 }

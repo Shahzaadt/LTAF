@@ -92,7 +92,7 @@ namespace LTAF.Infrastructure
             }
         }
 
-        protected virtual void DisposeWebServer()
+        protected virtual void DisposeWebServer(bool disposing)
         {
         }
 
@@ -112,9 +112,16 @@ namespace LTAF.Infrastructure
 
         public void Dispose()
         {
-            DisposeWebServer();
+            DisposeWebServer(true);
+
+            GC.SuppressFinalize(this);
         }
 
         #endregion
+
+        ~WebServer()
+        {
+            DisposeWebServer(false);
+        }
     }
 }
