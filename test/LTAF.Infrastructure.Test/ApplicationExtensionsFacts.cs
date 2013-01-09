@@ -89,6 +89,55 @@ namespace LTAF.Infrastructure.Test
                 // Assert
                 fileSystem.VerifyAll();
             }
+
+            [Fact]
+            public void WhenDeployingListOfFiles_IfListIsEmpty_ShouldThrow_Fact()
+            {
+                // Arrange
+                var app = this._serverManager.Sites[0].Applications.Add(Helper.Randomize("/test"), @"c:\temp\target");
+
+                var fileSystem = new Mock<FileSystemBase>(MockBehavior.Strict);
+                fileSystem.Setup<bool>(f => f.DirectoryExists(@"c:\Temp\MySite")).Returns(true);
+                fileSystem.Setup<bool>(f => f.DirectoryExists(@"c:\temp\target")).Returns(true);
+                fileSystem.Setup(f => f.DirectoryCopy(@"c:\Temp\MySite", @"c:\temp\target"));
+
+                // Act, Assert
+                var exception = Assert.Throws<ArgumentNullException>(() => ApplicationExtensions.Deploy(app, (string[])null, "", fileSystem.Object));
+                Xunit.Assert.True(exception.Message.Contains("filePaths"));
+            }
+
+            [Fact]
+            public void WhenDeployingListOfFiles_ShouldCopyExistingFilesToRelativeSubFolder_Fact()
+            {
+                // Arrange
+                var app = this._serverManager.Sites[0].Applications.Add(Helper.Randomize("/test"), @"c:\temp\target");
+
+                var fileSystem = new Mock<FileSystemBase>(MockBehavior.Strict);
+                fileSystem.Setup<bool>(f => f.DirectoryExists(@"c:\temp\target")).Returns(false);
+                fileSystem.Setup(f => f.DirectoryCreate(@"c:\temp\target"));
+                fileSystem.Setup<bool>(f => f.DirectoryExists(@"c:\temp\target\relative")).Returns(false);
+                fileSystem.Setup(f => f.DirectoryCreate(@"c:\temp\target\relative"));
+                
+                fileSystem.Setup<bool>(f => f.FileExists(@"c:\Temp\MySite\file1.html")).Returns(true);
+                fileSystem.Setup<bool>(f => f.FileExists(@"c:\Temp\MySite\file2.html")).Returns(true);
+                fileSystem.Setup<bool>(f => f.FileExists(@"c:\Temp\MySite\file3.html")).Returns(false);
+                fileSystem.Setup(f => f.FileCopy(@"c:\Temp\MySite\file1.html", @"c:\temp\target\relative\file1.html", true));
+                fileSystem.Setup(f => f.FileCopy(@"c:\Temp\MySite\file2.html", @"c:\temp\target\relative\file2.html", true));
+
+                // Act
+                ApplicationExtensions.Deploy(app, 
+                    new string[] 
+                    {
+                        @"c:\Temp\MySite\file1.html",
+                        @"c:\Temp\MySite\file2.html",
+                        @"c:\Temp\MySite\file3.html"
+                    }, 
+                    @"relative", fileSystem.Object);
+
+                // Assert
+                fileSystem.VerifyAll();
+            }
+
         }
     }
 }
