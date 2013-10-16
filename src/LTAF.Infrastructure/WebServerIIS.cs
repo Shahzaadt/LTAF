@@ -41,25 +41,26 @@ namespace LTAF.Infrastructure
             // test using this assembly are executed as x86 process on x64 machine, file may not be
             // found. So we have a back up way to determine IIS version based on OS version.
 
-            Version version = null;
+            Version version;
 
-            string exePath = this._environmentSystem.ExpandEnvironmentVariables(@"%windir%\Sysnative\inetsrv\inetinfo.exe");
+            string exePath = _environmentSystem.ExpandEnvironmentVariables(@"%windir%\Sysnative\inetsrv\inetinfo.exe");
 
-            if (this._fileSystem.FileExists(exePath))
+            if (_fileSystem.FileExists(exePath))
             {
-                version = this._fileSystem.FileGetVersion(exePath);    
+                version = _fileSystem.FileGetVersion(exePath);    
             } 
             else
             {
-                if (this._environmentSystem.OSVersion.ToString(2) == "6.2")
+                var osVersion = _environmentSystem.OSVersion.ToString(2);
+                if (osVersion == "6.2" || osVersion == "6.3")
                 {
                     version = new Version(8, 0);
                 }
-                else if (this._environmentSystem.OSVersion.ToString(2) == "6.1")
+                else if (osVersion == "6.1")
                 {
                     version = new Version(7, 5);
                 }
-                else if (this._environmentSystem.OSVersion.ToString(2) == "6.0")
+                else if (osVersion == "6.0")
                 {
                     version = new Version(7, 0);
                 }
