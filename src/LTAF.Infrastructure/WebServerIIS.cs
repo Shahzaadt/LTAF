@@ -52,7 +52,11 @@ namespace LTAF.Infrastructure
             else
             {
                 var osVersion = _environmentSystem.OSVersion.ToString(2);
-                if (osVersion == "6.2" || osVersion == "6.3")
+                if (osVersion == "6.3")
+                {
+                    version = new Version(8, 5);
+                } 
+                else if (osVersion == "6.2")
                 {
                     version = new Version(8, 0);
                 }
